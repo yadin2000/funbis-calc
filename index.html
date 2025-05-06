@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מחשבון תמחור - פאן ביס</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #fff9ec; color: #333; }
+    h2 { color: #ff9800; }
+    label { display: block; margin-top: 10px; }
+    input, select { width: 100%; padding: 8px; font-size: 1em; margin-top: 5px; }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background: #ff9800;
+      color: white;
+      font-size: 1.1em;
+      padding: 12px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    #result {
+      margin-top: 25px;
+      background: #fff3cd;
+      padding: 16px;
+      border-radius: 6px;
+      border: 1px solid #ffeeba;
+    }
+  </style>
+</head>
+<body>
+  <h2>מחשבון תמחור פנימי - פאן ביס</h2>
+
+  <label>כמות משתתפים:</label>
+  <input type="number" id="participants" value="100">
+
+  <label>שיעור רווח רצוי (%):</label>
+  <input type="number" id="profitPercent" value="40">
+
+  <label>בחר דוכנים:</label>
+  <select multiple id="products">
+    <option value="1.2">פופקורן</option>
+    <option value="1.0">שערות סבתא</option>
+    <option value="2.8">וופל בלגי</option>
+    <option value="2.5">גלידה אמריקאית</option>
+    <option value="2.0">תירס חם</option>
+    <option value="3.2">נקניקייה בלחמנייה</option>
+    <option value="7.5">המבורגר + צ'יפס</option>
+    <option value="2.2">ברד</option>
+    <option value="1.5">לימונדה</option>
+    <option value="3.5">שערות סבתא על מקל לד</option>
+  </select>
+
+  <button onclick="calculate()">חשב</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculate() {
+      let participants = parseInt(document.getElementById('participants').value);
+      let profitPercent = parseFloat(document.getElementById('profitPercent').value);
+      let profitRate = 1 - (profitPercent / 100);
+      let products = document.getElementById('products');
+      let selected = Array.from(products.selectedOptions);
+      let foodCostPerPerson = selected.reduce((acc, opt) => acc + parseFloat(opt.value), 0);
+      let foodCost = foodCostPerPerson * participants;
+
+      let workers = selected.length;
+      let workerCost = workers * 250;
+      let fixed = 350;
+      let totalCost = foodCost + workerCost + fixed;
+      let clientPrice = Math.round(totalCost / profitRate);
+      let profit = clientPrice - totalCost;
+
+      document.getElementById('result').innerHTML =
+        "<strong>סה"כ עלות מזון:</strong> " + foodCost.toFixed(2) + " ש"ח<br>" +
+        "<strong>כמות עובדים:</strong> " + workers + " (250 ש"ח כל אחד)<br>" +
+        "<strong>סה"כ הוצאות קבועות:</strong> " + (workerCost + fixed).toFixed(2) + " ש"ח<br>" +
+        "<strong>סה"כ עלות:</strong> " + totalCost.toFixed(2) + " ש"ח<br>" +
+        "<strong>מחיר ללקוח:</strong> " + clientPrice + " ש"ח<br>" +
+        "<strong>רווח נטו:</strong> " + profit.toFixed(2) + " ש"ח";
+    }
+  </script>
+</body>
+</html>

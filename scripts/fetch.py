@@ -22,8 +22,14 @@ import urllib.request
 
 MAX_BREEDS = 100
 IMAGES_PER_BREED = 5
-REQUEST_DELAY = 0.5
+REQUEST_DELAY = 1.0
 TIMEOUT = 60
+# Wikimedia answers 429 when it thinks we are hammering it. A single 429 used
+# to cost us the photo outright, which is how a run came back with one image
+# for most breeds -- so those are now waited out and retried.
+MAX_ATTEMPTS = 4
+BACKOFF_SECONDS = 5
+MAX_BACKOFF = 120
 
 CONTACT = "dog-breed-quiz/1.0 (https://github.com/yadin2000/funbis-calc; contact: f488yt79sn@privaterelay.appleid.com)"
 USER_AGENT = CONTACT
@@ -76,20 +82,46 @@ def slugify(name):
     return ascii_name.strip("-") or "breed"
 
 
+def retry_delay(error, attempt):
+    """How long to wait before retrying -- Wikimedia's figure if it gave one."""
+    header = ""
+    if hasattr(error, "headers") and error.headers:
+        header = (error.headers.get("Retry-After") or "").strip()
+    if header.isdigit():
+        return min(int(header), MAX_BACKOFF)
+    return min(BACKOFF_SECONDS * (2 ** attempt), MAX_BACKOFF)
+
+
+def retryable(error):
+    """Rate limiting and server hiccups are worth another go; 404 is not."""
+    if isinstance(error, urllib.error.HTTPError):
+        return error.code == 429 or error.code >= 500
+    return isinstance(error, FETCH_ERRORS)
+
+
 def request(url, headers=None, binary=False):
-    """One HTTP GET, always followed by the courtesy delay."""
+    """One HTTP GET, retried through rate limiting, then the courtesy delay."""
     all_headers = {"User-Agent": USER_AGENT}
     if headers:
         all_headers.update(headers)
     req = urllib.request.Request(url, headers=all_headers)
-    try:
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
-            payload = response.read()
-    finally:
+
+    for attempt in range(MAX_ATTEMPTS):
+        try:
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as response:
+                payload = response.read()
+        except FETCH_ERRORS as exc:
+            last = attempt == MAX_ATTEMPTS - 1
+            if last or not retryable(exc):
+                time.sleep(REQUEST_DELAY)
+                raise
+            wait = retry_delay(exc, attempt)
+            print("    %s -- waiting %ds before retry %d/%d"
+                  % (exc, wait, attempt + 2, MAX_ATTEMPTS))
+            time.sleep(wait)
+            continue
         time.sleep(REQUEST_DELAY)
-    if binary:
-        return payload
-    return payload.decode("utf-8")
+        return payload if binary else payload.decode("utf-8")
 
 
 def file_title(url):

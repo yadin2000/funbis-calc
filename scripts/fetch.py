@@ -3,6 +3,8 @@
 
 Source of truth is Wikidata: every item that is an instance of "dog breed"
 (Q39367), ordered by sitelink count so the best-documented breeds come first.
+That count rides along into breeds.json, where the quiz uses it to rank breeds
+from famous to obscure and build its difficulty levels.
 Each breed gets IMAGES_PER_BREED photos: the curated P18 picture, falling back
 to the breed's Commons category when Wikidata has no P18.
 
@@ -22,7 +24,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-MAX_BREEDS = 100
+MAX_BREEDS = 200
 IMAGES_PER_BREED = 1
 REQUEST_DELAY = 1.0
 TIMEOUT = 60
@@ -155,6 +157,7 @@ def fetch_breeds():
             "name_he": row["nameHe"]["value"] if "nameHe" in row else None,
             "image": row["image"]["value"] if "image" in row else None,
             "commons": row["commons"]["value"] if "commons" in row else None,
+            "sitelinks": int(row["sitelinks"]["value"]) if "sitelinks" in row else 0,
         })
     return breeds
 
@@ -273,6 +276,7 @@ def main():
                 "name_he": breed["name_he"],
                 "images": paths,
                 "image_count": len(paths),
+                "sitelinks": breed["sitelinks"],
             })
             continue
 
@@ -334,6 +338,7 @@ def main():
             "name_he": breed["name_he"],
             "images": paths,
             "image_count": len(paths),
+            "sitelinks": breed["sitelinks"],
         })
 
     try:

@@ -34,6 +34,8 @@ TIMEOUT = 60
 # to cost us the photo outright, which is how a run came back with one image
 # for most breeds -- so those are now waited out and retried.
 MAX_ATTEMPTS = 4
+# Bumping this discards facts picked by an older, worse heuristic.
+FACT_VERSION = 2
 BACKOFF_SECONDS = 5
 MAX_BACKOFF = 120
 
@@ -229,28 +231,74 @@ def existing_images(directory):
     return sorted(names, key=order)
 
 
-def first_sentences(text, limit=2, cap=240):
-    """The opening line or two of an article, which is where the point is."""
-    paragraph = text.strip().split("\n")[0].strip()
-    if not paragraph:
-        return ""
+SUPERLATIVES = ("ביותר", "הכי ")
+# What a breed was for, where it came from, what it can do -- the parts a
+# player actually finds interesting.
+NOTABLE = (
+    "שימש", "משמש", "גודל ", "גודלו", "פותח", "פותחה", "נועד", "מיועד",
+    "מסוגל", "ידוע ", "מפורסם", "מקורו", "מוצאו", "נחשב", "בוית", "אולף",
+    "מהיר", "חזק", "ציד", "שמירה", "רועה", "מירוצ", "משקל", "גובה",
+)
+# A Hebrew Wikipedia lead almost always opens with a taxonomic definition,
+# which is the least interesting sentence in the article.
+DEFINITIONS = ("הוא גזע", "היא גזע", "הוא כלב", "היא כלב", "הוא תת", "הוא אחד",
+               "היא אחת", "הם גזע", "שם מדעי")
 
-    sentences = []
-    rest = paragraph
-    while rest and len(sentences) < limit:
-        stop = rest.find(". ")
-        if stop == -1:
-            sentences.append(rest.rstrip(" ."))
-            break
-        sentences.append(rest[:stop])
-        rest = rest[stop + 2:]
 
-    fact = ". ".join(part.strip() for part in sentences if part.strip())
-    if not fact:
+def sentences_of(text):
+    """The lead split into sentences, ignoring the infobox-ish short lines."""
+    lead = " ".join(part.strip() for part in text.strip().split("\n")[:3] if part.strip())
+    out = []
+    for chunk in lead.split(". "):
+        chunk = chunk.strip()
+        if chunk:
+            out.append(chunk.rstrip(" ."))
+    return out
+
+
+def score_sentence(sentence, position):
+    """How much of a "did you know" a sentence is."""
+    score = 0
+    if any(word in sentence for word in SUPERLATIVES):
+        score += 4
+    if any(ch.isdigit() for ch in sentence):
+        score += 2
+    if any(word in sentence for word in NOTABLE):
+        score += 2
+    if position == 0 and any(word in sentence for word in DEFINITIONS):
+        score -= 4
+    if len(sentence) < 35:
+        score -= 2
+    if len(sentence) > 200:
+        score -= 1
+    return score
+
+
+def cap(sentence, limit=240):
+    sentence = sentence.strip().rstrip(" .")
+    if not sentence:
         return ""
-    if len(fact) > cap:
-        fact = fact[:cap].rsplit(" ", 1)[0] + "…"
-    return fact if fact.endswith(("…", ".")) else fact + "."
+    if len(sentence) > limit:
+        return sentence[:limit].rsplit(" ", 1)[0] + "…"
+    return sentence + "."
+
+
+def first_sentences(text, limit=2, cap_at=240):
+    """Fallback: the opening line or two, when nothing scores as interesting."""
+    parts = sentences_of(text)[:limit]
+    return cap(". ".join(parts), cap_at) if parts else ""
+
+
+def best_fact(text):
+    """The most interesting sentence of the lead, not merely the first."""
+    parts = sentences_of(text)
+    if not parts:
+        return ""
+    ranked = [(score_sentence(part, i), -i, part) for i, part in enumerate(parts)]
+    best = max(ranked)
+    if best[0] > 0:
+        return cap(best[2])
+    return first_sentences(text)
 
 
 def fetch_fact(article):
@@ -270,7 +318,7 @@ def fetch_fact(article):
     for page in pages:
         extract = page.get("extract") or ""
         if extract:
-            return first_sentences(extract)
+            return best_fact(extract)
     return ""
 
 
@@ -282,7 +330,8 @@ def known_facts():
     except (OSError, ValueError):
         return {}
     return {b["slug"]: b["fact"] for b in previous
-            if isinstance(b, dict) and b.get("slug") and b.get("fact")}
+            if isinstance(b, dict) and b.get("slug") and b.get("fact")
+            and b.get("fact_version") == FACT_VERSION}
 
 
 def trim_extras(directory, keep):
@@ -357,6 +406,7 @@ def main():
                 "image_count": len(paths),
                 "sitelinks": breed["sitelinks"],
                 "fact": fact_for(slug, breed),
+                "fact_version": FACT_VERSION,
             })
             continue
 
@@ -420,6 +470,7 @@ def main():
             "image_count": len(paths),
             "sitelinks": breed["sitelinks"],
             "fact": fact_for(slug, breed),
+            "fact_version": FACT_VERSION,
         })
 
     try:

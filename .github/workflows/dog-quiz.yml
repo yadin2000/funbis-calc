@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       max_breeds:
-        description: "How many breeds to collect"
+        description: "How many breeds to collect (blank uses the script's own MAX_BREEDS)"
         required: false
-        default: "100"
+        default: ""
 
 permissions:
   contents: write
@@ -29,9 +29,17 @@ jobs:
         with:
           python-version: "3.11"
 
+      # Only override the script's own MAX_BREEDS when a number was actually
+      # typed -- a default here silently outranks the constant in the file.
       - name: Collect breeds and photos
+        env:
+          MAX_BREEDS_INPUT: ${{ inputs.max_breeds }}
         run: |
-          sed -i "s/^MAX_BREEDS = .*/MAX_BREEDS = ${{ inputs.max_breeds }}/" scripts/fetch.py
+          if [ -n "$MAX_BREEDS_INPUT" ]; then
+            sed -i "s/^MAX_BREEDS = .*/MAX_BREEDS = $MAX_BREEDS_INPUT/" scripts/fetch.py
+            echo "Overriding MAX_BREEDS with $MAX_BREEDS_INPUT"
+          fi
+          grep "^MAX_BREEDS" scripts/fetch.py
           python3 scripts/fetch.py
           git checkout -- scripts/fetch.py
 

@@ -138,6 +138,8 @@
 <script>
 const ROUND_SIZE = 10;
 const OPTION_COUNT = 4;
+// The dataset sits at the repository root; this page is served from /quiz/.
+const DATA_ROOT = "../";
 
 let breeds = [];
 let round = [];
@@ -168,7 +170,7 @@ function showError(html) {
 async function load() {
   let data;
   try {
-    const response = await fetch("breeds.json", { cache: "no-cache" });
+    const response = await fetch(DATA_ROOT + "breeds.json", { cache: "no-cache" });
     if (!response.ok) throw new Error("HTTP " + response.status);
     data = await response.json();
   } catch (err) {
@@ -225,7 +227,7 @@ function showQuestion() {
   $("spinner").style.display = "grid";
   img.onload = () => { img.hidden = false; $("spinner").style.display = "none"; };
   img.onerror = () => { $("spinner").textContent = "התמונה לא נטענה"; };
-  img.src = breed.images[Math.floor(Math.random() * breed.images.length)];
+  img.src = DATA_ROOT + breed.images[Math.floor(Math.random() * breed.images.length)];
 
   const box = $("options");
   box.innerHTML = "";

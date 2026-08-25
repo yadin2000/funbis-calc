@@ -12,8 +12,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
   group: dog-quiz
@@ -45,6 +43,8 @@ jobs:
             echo "Breeds in breeds.json: **$(python3 -c 'import json;print(len(json.load(open("breeds.json"))))')**"
             echo "Photos downloaded: **$(find images -type f | wc -l)**"
             echo ""
+            echo "Play at https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/quiz/"
+            echo ""
             if [ -s failed.log ]; then
               echo "Breeds that failed or came back empty:"
               echo ""
@@ -54,6 +54,9 @@ jobs:
             fi
           } >> "$GITHUB_STEP_SUMMARY"
 
+      # Committing to the published branch is all that is needed: GitHub Pages
+      # already builds this repository's root, so the new files go live on their
+      # own and the existing pricing calculator at / is left untouched.
       - name: Commit the dataset
         run: |
           git config user.name "github-actions[bot]"
@@ -65,30 +68,3 @@ jobs:
             git commit -m "Update dog breed dataset"
             git push
           fi
-
-      # Turns the Pages source into "GitHub Actions" via the API, so the repo
-      # owner does not have to flip it by hand in Settings.
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
-      - name: Assemble the site
-        run: |
-          mkdir -p _site
-          cp quiz/index.html _site/index.html
-          cp breeds.json _site/breeds.json
-          cp -r images _site/images
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
-  deploy:
-    needs: fetch
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4

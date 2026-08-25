@@ -35,7 +35,7 @@ TIMEOUT = 60
 # for most breeds -- so those are now waited out and retried.
 MAX_ATTEMPTS = 4
 # Bumping this discards facts picked by an older, worse heuristic.
-FACT_VERSION = 2
+FACT_VERSION = 3
 BACKOFF_SECONDS = 5
 MAX_BACKOFF = 120
 
@@ -231,51 +231,100 @@ def existing_images(directory):
     return sorted(names, key=order)
 
 
-SUPERLATIVES = ("ביותר", "הכי ")
-# What a breed was for, where it came from, what it can do -- the parts a
-# player actually finds interesting.
+# Scoring a sentence for how much of a "did you know" it is. The first run
+# showed why this matters: 44% of the facts came back as taxonomy ("הוא אחד
+# מגזעי כלב הבית"), bare measurements, or worse.
+STRONG = ("ביותר", "הכי ", "היחיד", "היחידה", "לראשונה", "נכחד", "מקודש", "בעולם")
 NOTABLE = (
-    "שימש", "משמש", "גודל ", "גודלו", "פותח", "פותחה", "נועד", "מיועד",
-    "מסוגל", "ידוע ", "מפורסם", "מקורו", "מוצאו", "נחשב", "בוית", "אולף",
-    "מהיר", "חזק", "ציד", "שמירה", "רועה", "מירוצ", "משקל", "גובה",
+    "שימש", "משמש", "שימשו", "פותח", "פותחה", "טופח", "הורבע", "נועד", "מיועד",
+    "מסוגל", "מקורו", "מוצאו", "נחשב", "בוית", "אולף", "קרוי על שם", "נגזר",
+    "פירוש", "המאה ה", "בשנת", "ציד", "שמירה", "רעיי", "מזחל", "חוש ריח",
+    "הצל", "מהיר", "אינטליגנט", "התפרסם", "מפורסם", "סיפור", "עתיק", "נפוץ",
+    "סובל", "מחלה", "תורש", "נשיא", "מלך", "מלכה", "מלחמ", "סרט", "יוצא דופן",
+    "בניגוד", "ידוע ב", "מיוחד", "אגדה", "הוברח", "גילוי",
 )
-# A Hebrew Wikipedia lead almost always opens with a taxonomic definition,
-# which is the least interesting sentence in the article.
-DEFINITIONS = ("הוא גזע", "היא גזע", "הוא כלב", "היא כלב", "הוא תת", "הוא אחד",
-               "היא אחת", "הם גזע", "שם מדעי")
+# A lead almost always opens by classifying the breed, which is the least
+# interesting thing the article has to say.
+DEFINITIONS = (
+    "הוא גזע", "היא גזע", "הם גזע", "הוא כלב הבית", "הוא תת-מין", "הוא תת המין",
+    "הוא אחד מגזעי", "שייך למשפחת הכלביים", "הוא שמו של גזע", "מקבוצת הטריירים",
+    "השייך לקבוצת", "הוא גזע של כלב", "שם מדעי",
+)
+MEASURES = ("ס\"מ", "סנטימ", "ק\"ג", "קילוג", "מטר")
+DIMENSIONS = ("גובה", "משקל", "אורך", "גובהו", "משקלו", "אורכו")
+# Editorial residue that has no business in a game.
+ARTEFACTS = ("[דרוש מקור]", "[דרושה הבהרה]", "[מקור]")
+
+# Below this a sentence is not worth showing at all -- better an absent box
+# than a boring one.
+MIN_SCORE = 3
+
+
+def clean(text):
+    """Strip the editor-facing residue out of article text."""
+    for mark in ARTEFACTS:
+        text = text.replace(mark, "")
+    text = re.sub(r"\[\d+\]", "", text)          # [1] footnote markers
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
 
 
 def sentences_of(text):
-    """The lead split into sentences, ignoring the infobox-ish short lines."""
-    lead = " ".join(part.strip() for part in text.strip().split("\n")[:3] if part.strip())
+    """Article text as sentences, skipping headings and stub lines."""
     out = []
-    for chunk in lead.split(". "):
-        chunk = chunk.strip()
-        if chunk:
-            out.append(chunk.rstrip(" ."))
+    for line in text.split("\n"):
+        line = line.strip()
+        if not line or line.startswith("=="):     # section headings
+            continue
+        line = clean(line)
+        # A period followed by a space *or* directly by a Hebrew letter -- real
+        # articles contain both, and only handling the first glued two
+        # sentences together.
+        for chunk in re.split(r"(?<=[^\d])\.(?=\s|[\u0590-\u05FF])", line):
+            chunk = chunk.strip().rstrip(" .")
+            if chunk:
+                out.append(chunk)
     return out
 
 
-def score_sentence(sentence, position):
+def is_measurement(sentence):
+    """A sentence that is only how tall and how heavy the dog is."""
+    return (any(u in sentence for u in MEASURES)
+            and any(dim in sentence for dim in DIMENSIONS))
+
+
+def score_sentence(sentence):
     """How much of a "did you know" a sentence is."""
+    strong = any(word in sentence for word in STRONG)
+    # A superlative earns its keep even when the sentence also classifies the
+    # breed -- "one of the oldest breeds" is a fact, not taxonomy.
+    interesting = strong or any(word in sentence for word in NOTABLE)
     score = 0
-    if any(word in sentence for word in SUPERLATIVES):
-        score += 4
-    if any(ch.isdigit() for ch in sentence):
-        score += 2
-    if any(word in sentence for word in NOTABLE):
-        score += 2
-    if position == 0 and any(word in sentence for word in DEFINITIONS):
-        score -= 4
+    if strong:
+        score += 5
+    if interesting:
+        score += 3
+    if any(ch.isdigit() for ch in sentence) and interesting:
+        score += 1                                 # a date or a speed, not a size
+    if "%" in sentence or re.search(r"\b1[5-9]\d\d\b|\b20\d\d\b", sentence):
+        score += 3                                 # a real figure or a real year
+    if is_measurement(sentence) and not strong:
+        score -= 6
+    if any(word in sentence for word in DEFINITIONS) and not interesting:
+        score -= 6
+    if "מספר הגזע" in sentence:
+        score -= 6
+    # Only genuinely stubby lines are penalised: "he is the fastest dog in the
+    # world" is 43 characters and is exactly what we are looking for.
     if len(sentence) < 35:
+        score -= 3
+    if len(sentence) > 230:
         score -= 2
-    if len(sentence) > 200:
-        score -= 1
     return score
 
 
-def cap(sentence, limit=240):
-    sentence = sentence.strip().rstrip(" .")
+def cap(sentence, limit=230):
+    sentence = clean(sentence).rstrip(" .")
     if not sentence:
         return ""
     if len(sentence) > limit:
@@ -283,22 +332,14 @@ def cap(sentence, limit=240):
     return sentence + "."
 
 
-def first_sentences(text, limit=2, cap_at=240):
-    """Fallback: the opening line or two, when nothing scores as interesting."""
-    parts = sentences_of(text)[:limit]
-    return cap(". ".join(parts), cap_at) if parts else ""
-
-
 def best_fact(text):
-    """The most interesting sentence of the lead, not merely the first."""
-    parts = sentences_of(text)
-    if not parts:
+    """The most interesting sentence in the article, or nothing at all."""
+    ranked = [(score_sentence(part), -i, part)
+              for i, part in enumerate(sentences_of(text))]
+    if not ranked:
         return ""
-    ranked = [(score_sentence(part, i), -i, part) for i, part in enumerate(parts)]
-    best = max(ranked)
-    if best[0] > 0:
-        return cap(best[2])
-    return first_sentences(text)
+    score, _, sentence = max(ranked)
+    return cap(sentence) if score >= MIN_SCORE else ""
 
 
 def fetch_fact(article):
@@ -308,7 +349,6 @@ def fetch_fact(article):
         "format": "json",
         "formatversion": "2",
         "prop": "extracts",
-        "exintro": "1",
         "explaintext": "1",
         "redirects": "1",
         "titles": article,
@@ -318,7 +358,7 @@ def fetch_fact(article):
     for page in pages:
         extract = page.get("extract") or ""
         if extract:
-            return best_fact(extract)
+            return best_fact(extract[:20000])
     return ""
 
 

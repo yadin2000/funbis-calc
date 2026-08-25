@@ -202,10 +202,17 @@ def category_thumbs(category, wanted, exclude):
 
 
 def existing_images(directory):
+    """The photos already on disk for one breed, in numeric order."""
     try:
-        return sorted(f for f in os.listdir(directory) if not f.startswith("."))
+        names = [f for f in os.listdir(directory) if not f.startswith(".")]
     except OSError:
         return []
+
+    def order(name):
+        stem = os.path.splitext(name)[0]
+        return (0, int(stem), "") if stem.isdigit() else (1, 0, name)
+
+    return sorted(names, key=order)
 
 
 def download(url, destination):
@@ -293,6 +300,11 @@ def main():
             paths.append("images/%s/%s" % (slug, filename))
             if len(paths) >= IMAGES_PER_BREED:
                 break
+
+        # Whatever ended up in the directory is the truth, including photos a
+        # previous run fetched and this one could not reach.
+        present = existing_images(directory)
+        paths = ["images/%s/%s" % (slug, f) for f in present[:IMAGES_PER_BREED]]
 
         print("[%d/%d] %s -- %d images" % (index, total, name, len(paths)))
         if failed or not paths:

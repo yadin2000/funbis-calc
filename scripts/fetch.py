@@ -6,7 +6,9 @@ Source of truth is Wikidata: every item that is an instance of "dog breed"
 That count rides along into breeds.json, where the quiz uses it to rank breeds
 from famous to obscure and build its difficulty levels.
 Each breed gets IMAGES_PER_BREED photos: the curated P18 picture, falling back
-to the breed's Commons category when Wikidata has no P18.
+to the breed's Commons category when Wikidata has no P18. It also picks up the
+opening line of the breed's Hebrew Wikipedia article, which the quiz shows as a
+"did you know" after each answer.
 
 Run it as many times as you like -- breeds that already have their photos on
 disk are skipped without touching the network, and lowering IMAGES_PER_BREED
@@ -40,6 +42,7 @@ USER_AGENT = CONTACT
 
 SPARQL_ENDPOINT = "https://query.wikidata.org/sparql"
 COMMONS_API = "https://commons.wikimedia.org/w/api.php"
+HEWIKI_API = "https://he.wikipedia.org/w/api.php"
 
 OUTPUT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 IMAGES_DIR = os.path.join(OUTPUT_DIR, "images")
@@ -53,7 +56,7 @@ SKIP_EXTENSIONS = (".svg", ".ogv", ".webm", ".gif")
 FETCH_ERRORS = (OSError, http.client.HTTPException, ValueError, KeyError)
 
 QUERY = """
-SELECT ?breed ?nameEn ?nameHe ?image ?commons ?sitelinks WHERE {
+SELECT ?breed ?nameEn ?nameHe ?image ?commons ?sitelinks ?article WHERE {
   ?breed wdt:P31 wd:Q39367 ;
          wikibase:sitelinks ?sitelinks .
   ?breed rdfs:label ?nameEn .
@@ -64,6 +67,11 @@ SELECT ?breed ?nameEn ?nameHe ?image ?commons ?sitelinks WHERE {
   }
   OPTIONAL { ?breed wdt:P18 ?image }
   OPTIONAL { ?breed wdt:P373 ?commons }
+  OPTIONAL {
+    ?page schema:about ?breed ;
+          schema:isPartOf <https://he.wikipedia.org/> ;
+          schema:name ?article .
+  }
 }
 ORDER BY DESC(?sitelinks)
 """
@@ -158,6 +166,7 @@ def fetch_breeds():
             "image": row["image"]["value"] if "image" in row else None,
             "commons": row["commons"]["value"] if "commons" in row else None,
             "sitelinks": int(row["sitelinks"]["value"]) if "sitelinks" in row else 0,
+            "article": row["article"]["value"] if "article" in row else None,
         })
     return breeds
 
@@ -220,6 +229,62 @@ def existing_images(directory):
     return sorted(names, key=order)
 
 
+def first_sentences(text, limit=2, cap=240):
+    """The opening line or two of an article, which is where the point is."""
+    paragraph = text.strip().split("\n")[0].strip()
+    if not paragraph:
+        return ""
+
+    sentences = []
+    rest = paragraph
+    while rest and len(sentences) < limit:
+        stop = rest.find(". ")
+        if stop == -1:
+            sentences.append(rest.rstrip(" ."))
+            break
+        sentences.append(rest[:stop])
+        rest = rest[stop + 2:]
+
+    fact = ". ".join(part.strip() for part in sentences if part.strip())
+    if not fact:
+        return ""
+    if len(fact) > cap:
+        fact = fact[:cap].rsplit(" ", 1)[0] + "…"
+    return fact if fact.endswith(("…", ".")) else fact + "."
+
+
+def fetch_fact(article):
+    """The lead of a breed's Hebrew Wikipedia article, as a "did you know"."""
+    params = {
+        "action": "query",
+        "format": "json",
+        "formatversion": "2",
+        "prop": "extracts",
+        "exintro": "1",
+        "explaintext": "1",
+        "redirects": "1",
+        "titles": article,
+    }
+    raw = request(HEWIKI_API + "?" + urllib.parse.urlencode(params))
+    pages = json.loads(raw).get("query", {}).get("pages", [])
+    for page in pages:
+        extract = page.get("extract") or ""
+        if extract:
+            return first_sentences(extract)
+    return ""
+
+
+def known_facts():
+    """Facts collected on an earlier run, so a re-run does not refetch them."""
+    try:
+        with open(BREEDS_JSON, encoding="utf-8") as handle:
+            previous = json.load(handle)
+    except (OSError, ValueError):
+        return {}
+    return {b["slug"]: b["fact"] for b in previous
+            if isinstance(b, dict) and b.get("slug") and b.get("fact")}
+
+
 def trim_extras(directory, keep):
     """Drop photos past the cap, so lowering IMAGES_PER_BREED actually takes."""
     dropped = 0
@@ -258,6 +323,20 @@ def main():
     total = len(breeds)
     print("%d breeds with a Hebrew label -- starting downloads" % total)
 
+    facts = known_facts()
+
+    def fact_for(slug, breed):
+        """Reuse a fact we already have; otherwise read one off he.wikipedia."""
+        if facts.get(slug):
+            return facts[slug]
+        if not breed["article"]:
+            return ""
+        try:
+            return fetch_fact(breed["article"])
+        except FETCH_ERRORS as exc:
+            print("  fact lookup failed for %s: %s" % (breed["name_en"], exc))
+            return ""
+
     dataset = []
     for index, breed in enumerate(breeds, start=1):
         name = breed["name_en"]
@@ -277,6 +356,7 @@ def main():
                 "images": paths,
                 "image_count": len(paths),
                 "sitelinks": breed["sitelinks"],
+                "fact": fact_for(slug, breed),
             })
             continue
 
@@ -339,6 +419,7 @@ def main():
             "images": paths,
             "image_count": len(paths),
             "sitelinks": breed["sitelinks"],
+            "fact": fact_for(slug, breed),
         })
 
     try:

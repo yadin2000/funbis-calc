@@ -102,6 +102,19 @@
   .feedback { margin-top: 14px; min-height: 24px; font-size: 0.95rem; color: var(--muted); }
   .feedback b { color: var(--ink); }
 
+  .fact {
+    margin-top: 12px;
+    padding: 13px 15px;
+    background: #fff6e3;
+    border: 1px solid #f2e0bd;
+    border-right: 4px solid var(--accent);
+    border-radius: 10px;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: var(--ink);
+  }
+  .fact h4 { margin: 0 0 5px; font-size: 0.85rem; color: var(--accent); font-weight: 800; }
+
   .primary {
     margin-top: 12px;
     width: 100%;
@@ -185,6 +198,7 @@
 
     <div class="options" id="options"></div>
     <div class="feedback" id="feedback"></div>
+    <div class="fact hidden" id="fact"><h4>💡 הידעת?</h4><span id="factText"></span></div>
     <button class="primary hidden" id="next">השאלה הבאה</button>
   </div>
 
@@ -366,6 +380,7 @@ function showQuestion() {
   $("points").textContent = points;
   $("progress").style.width = (index / round.length) * 100 + "%";
   $("feedback").textContent = "";
+  $("fact").classList.add("hidden");
   $("next").classList.add("hidden");
 
   const img = $("photo");
@@ -407,6 +422,12 @@ function answer(button, choice, breed) {
     button.classList.add("wrong");
     buttons.find((b) => b.textContent === breed.name_he)?.classList.add("correct");
     $("feedback").innerHTML = "לא — זה <b>" + breed.name_he + "</b> (" + breed.name_en + ")";
+  }
+
+  // Right or wrong, this is the moment the player is curious about the breed.
+  if (breed.fact) {
+    $("factText").textContent = breed.fact;
+    $("fact").classList.remove("hidden");
   }
 
   $("points").textContent = points;

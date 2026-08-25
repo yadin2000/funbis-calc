@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>חידון גזעי כלבים</title>
+<style>
+  :root {
+    --bg: #fff9ec;
+    --card: #ffffff;
+    --ink: #2f2a24;
+    --muted: #7d7266;
+    --accent: #ff9800;
+    --correct: #2e9e5b;
+    --wrong: #d64545;
+    --line: #ecdfc8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; }
+
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  h1 { font-size: 1.25rem; margin: 0; color: var(--accent); }
+  .score { font-size: 0.95rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+  .bar { height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; margin-bottom: 14px; }
+  .bar > i { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s ease; }
+
+  .photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #f0e6d6 center/cover no-repeat;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo .spinner {
+    position: absolute; inset: 0;
+    display: grid; place-items: center;
+    color: var(--muted); font-size: 0.9rem;
+  }
+
+  .options { display: grid; gap: 10px; margin-top: 14px; }
+  button.opt {
+    width: 100%;
+    padding: 15px 16px;
+    font-size: 1.05rem;
+    font-family: inherit;
+    text-align: right;
+    background: var(--card);
+    color: var(--ink);
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.08s ease, border-color 0.15s ease;
+  }
+  button.opt:active { transform: scale(0.99); }
+  button.opt[disabled] { cursor: default; }
+  button.opt.correct { border-color: var(--correct); background: #eaf7ef; color: #1d6b3c; font-weight: 700; }
+  button.opt.wrong { border-color: var(--wrong); background: #fdeeee; color: #a52f2f; }
+
+  .feedback { margin-top: 14px; min-height: 24px; font-size: 0.95rem; color: var(--muted); }
+  .feedback b { color: var(--ink); }
+
+  .primary {
+    margin-top: 12px;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.05rem;
+    font-family: inherit;
+    font-weight: 700;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  .hidden { display: none !important; }
+
+  .end { text-align: center; padding: 28px 16px; }
+  .end .big { font-size: 2.6rem; font-weight: 800; color: var(--accent); margin: 6px 0; }
+  .note { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .note code {
+    background: #f3ead9; padding: 2px 6px; border-radius: 4px;
+    font-size: 0.85em; direction: ltr; display: inline-block;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="loading" class="note" style="text-align:center; padding:40px 0;">טוען…</div>
+
+  <div id="error" class="hidden note" style="padding:24px 0;"></div>
+
+  <div id="game" class="hidden">
+    <header>
+      <h1>איזה גזע זה?</h1>
+      <div class="score"><span id="qnum">1</span>/<span id="qtotal">10</span> · ניקוד <span id="points">0</span></div>
+    </header>
+    <div class="bar"><i id="progress"></i></div>
+
+    <div class="photo">
+      <div class="spinner" id="spinner">טוען תמונה…</div>
+      <img id="photo" alt="תמונת כלב" hidden>
+    </div>
+
+    <div class="options" id="options"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="primary hidden" id="next">השאלה הבאה</button>
+  </div>
+
+  <div id="end" class="hidden end">
+    <div class="note">סיימת את הסבב</div>
+    <div class="big"><span id="finalScore">0</span>/<span id="finalTotal">10</span></div>
+    <div class="note" id="verdict"></div>
+    <button class="primary" id="again">סבב חדש</button>
+  </div>
+
+</div>
+
+<script>
+const ROUND_SIZE = 10;
+const OPTION_COUNT = 4;
+
+let breeds = [];
+let round = [];
+let index = 0;
+let points = 0;
+
+const $ = (id) => document.getElementById(id);
+
+function shuffle(list) {
+  const out = list.slice();
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+
+function pick(list, n) {
+  return shuffle(list).slice(0, n);
+}
+
+function showError(html) {
+  $("loading").classList.add("hidden");
+  $("error").classList.remove("hidden");
+  $("error").innerHTML = html;
+}
+
+async function load() {
+  let data;
+  try {
+    const response = await fetch("breeds.json", { cache: "no-cache" });
+    if (!response.ok) throw new Error("HTTP " + response.status);
+    data = await response.json();
+  } catch (err) {
+    showError(
+      "<b>לא נמצא קובץ הנתונים.</b><br><br>" +
+      "צריך להריץ קודם את שלב איסוף הנתונים — ב-GitHub, בלשונית Actions, " +
+      "מריצים את <code>Fetch dog breeds</code>.<br><br>" +
+      "<span style='opacity:.7'>(" + err.message + ")</span>"
+    );
+    return;
+  }
+
+  breeds = (Array.isArray(data) ? data : []).filter(
+    (b) => b && b.name_he && Array.isArray(b.images) && b.images.length > 0
+  );
+
+  if (breeds.length < OPTION_COUNT) {
+    showError(
+      "<b>אין מספיק גזעים כדי לשחק.</b><br><br>נמצאו " + breeds.length +
+      " גזעים עם תמונות, וצריך לפחות " + OPTION_COUNT + ". " +
+      "כדאי להריץ שוב את איסוף הנתונים ולבדוק את <code>failed.log</code>."
+    );
+    return;
+  }
+
+  $("loading").classList.add("hidden");
+  $("game").classList.remove("hidden");
+  startRound();
+}
+
+function startRound() {
+  round = pick(breeds, Math.min(ROUND_SIZE, breeds.length));
+  index = 0;
+  points = 0;
+  $("qtotal").textContent = round.length;
+  $("end").classList.add("hidden");
+  $("game").classList.remove("hidden");
+  showQuestion();
+}
+
+function showQuestion() {
+  const breed = round[index];
+  const others = pick(breeds.filter((b) => b.slug !== breed.slug), OPTION_COUNT - 1);
+  const choices = shuffle([breed, ...others]);
+
+  $("qnum").textContent = index + 1;
+  $("points").textContent = points;
+  $("progress").style.width = (index / round.length) * 100 + "%";
+  $("feedback").textContent = "";
+  $("next").classList.add("hidden");
+
+  const img = $("photo");
+  img.hidden = true;
+  $("spinner").style.display = "grid";
+  img.onload = () => { img.hidden = false; $("spinner").style.display = "none"; };
+  img.onerror = () => { $("spinner").textContent = "התמונה לא נטענה"; };
+  img.src = breed.images[Math.floor(Math.random() * breed.images.length)];
+
+  const box = $("options");
+  box.innerHTML = "";
+  choices.forEach((choice) => {
+    const button = document.createElement("button");
+    button.className = "opt";
+    button.type = "button";
+    button.textContent = choice.name_he;
+    button.onclick = () => answer(button, choice, breed);
+    box.appendChild(button);
+  });
+}
+
+function answer(button, choice, breed) {
+  const buttons = [...$("options").querySelectorAll("button")];
+  buttons.forEach((b) => { b.disabled = true; });
+
+  const right = choice.slug === breed.slug;
+  if (right) {
+    points++;
+    button.classList.add("correct");
+    $("feedback").innerHTML = "נכון! <b>" + breed.name_he + "</b> — " + breed.name_en;
+  } else {
+    button.classList.add("wrong");
+    buttons.find((b) => b.textContent === breed.name_he)?.classList.add("correct");
+    $("feedback").innerHTML = "לא — זה <b>" + breed.name_he + "</b> (" + breed.name_en + ")";
+  }
+
+  $("points").textContent = points;
+  $("next").textContent = index + 1 >= round.length ? "לסיכום" : "השאלה הבאה";
+  $("next").classList.remove("hidden");
+}
+
+$("next").onclick = () => {
+  index++;
+  if (index >= round.length) return finish();
+  showQuestion();
+};
+
+$("again").onclick = startRound;
+
+function finish() {
+  $("game").classList.add("hidden");
+  $("end").classList.remove("hidden");
+  $("finalScore").textContent = points;
+  $("finalTotal").textContent = round.length;
+
+  const ratio = points / round.length;
+  $("verdict").textContent =
+    ratio === 1 ? "מושלם! אתה מומחה כלבים." :
+    ratio >= 0.7 ? "יפה מאוד!" :
+    ratio >= 0.4 ? "לא רע — עוד סבב ותשתפר." :
+    "יש עוד הרבה גזעים ללמוד…";
+}
+
+load();
+</script>
+</body>
+</html>

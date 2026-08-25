@@ -1,0 +1,94 @@
+name: Fetch dog breeds
+
+# Manual only: hitting Wikidata and downloading ~500 photos is not something
+# that should happen on every push.
+on:
+  workflow_dispatch:
+    inputs:
+      max_breeds:
+        description: "How many breeds to collect"
+        required: false
+        default: "100"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: dog-quiz
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Collect breeds and photos
+        run: |
+          sed -i "s/^MAX_BREEDS = .*/MAX_BREEDS = ${{ inputs.max_breeds }}/" scripts/fetch.py
+          python3 scripts/fetch.py
+          git checkout -- scripts/fetch.py
+
+      - name: Summarise the run
+        run: |
+          {
+            echo "### Dog breed data"
+            echo ""
+            echo "Breeds in breeds.json: **$(python3 -c 'import json;print(len(json.load(open("breeds.json"))))')**"
+            echo "Photos downloaded: **$(find images -type f | wc -l)**"
+            echo ""
+            if [ -s failed.log ]; then
+              echo "Breeds that failed or came back empty:"
+              echo ""
+              sed 's/^/- /' failed.log
+            else
+              echo "No failures."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit the dataset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A images breeds.json
+          if git diff --staged --quiet; then
+            echo "Dataset unchanged."
+          else
+            git commit -m "Update dog breed dataset"
+            git push
+          fi
+
+      # Turns the Pages source into "GitHub Actions" via the API, so the repo
+      # owner does not have to flip it by hand in Settings.
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Assemble the site
+        run: |
+          mkdir -p _site
+          cp quiz/index.html _site/index.html
+          cp breeds.json _site/breeds.json
+          cp -r images _site/images
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: fetch
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -117,6 +117,33 @@
   }
   .hidden { display: none !important; }
 
+  .levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 6px; }
+  button.level {
+    position: relative;
+    padding: 14px 8px 12px;
+    font-family: inherit;
+    background: var(--card);
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    color: var(--ink);
+  }
+  button.level .n { display: block; font-size: 1.3rem; font-weight: 800; }
+  button.level .stars { display: block; font-size: 0.8rem; margin-top: 3px; min-height: 1em; color: var(--accent); }
+  button.level.locked { opacity: 0.45; cursor: not-allowed; background: transparent; }
+  button.level.cleared { border-color: var(--correct); background: #f2faf5; }
+  button.level.current { border-color: var(--accent); box-shadow: 0 0 0 3px #ffe9c4; }
+
+  .lead { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin: 2px 0 14px; }
+  .difficulty { font-size: 0.85rem; color: var(--muted); }
+  .backlink {
+    display: inline-block; margin-top: 16px; padding: 10px 14px;
+    font-family: inherit; font-size: 0.95rem;
+    background: none; border: 2px solid var(--line); border-radius: 10px;
+    color: var(--muted); cursor: pointer;
+  }
+
   .end { text-align: center; padding: 28px 16px; }
   .end .big { font-size: 2.6rem; font-weight: 800; color: var(--accent); margin: 6px 0; }
   .note { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
@@ -133,10 +160,20 @@
 
   <div id="error" class="hidden note" style="padding:24px 0;"></div>
 
-  <div id="game" class="hidden">
+  <div id="map" class="hidden">
     <header>
       <h1>איזה גזע זה?</h1>
-      <div class="score"><span id="qnum">1</span>/<span id="qtotal">10</span> · ניקוד <span id="points">0</span></div>
+      <div class="score" id="mapProgress"></div>
+    </header>
+    <p class="lead">15 שלבים, מהגזעים המוכרים ביותר עד הנדירים. כל שלב פותח את הבא אחריו.</p>
+    <div class="levels" id="levels"></div>
+    <p class="lead" id="mapNote" style="margin-top:16px"></p>
+  </div>
+
+  <div id="game" class="hidden">
+    <header>
+      <h1 id="levelTitle">שלב 1</h1>
+      <div class="score"><span id="qnum">1</span>/<span id="qtotal">5</span> · ניקוד <span id="points">0</span></div>
     </header>
     <div class="bar"><i id="progress"></i></div>
 
@@ -152,21 +189,27 @@
   </div>
 
   <div id="end" class="hidden end">
-    <div class="note">סיימת את הסבב</div>
-    <div class="big"><span id="finalScore">0</span>/<span id="finalTotal">10</span></div>
+    <div class="note" id="endTitle"></div>
+    <div class="big"><span id="finalScore">0</span>/<span id="finalTotal">5</span></div>
     <div class="note" id="verdict"></div>
-    <button class="primary" id="again">סבב חדש</button>
+    <button class="primary" id="again">שחק שוב את השלב</button>
+    <button class="backlink" id="toMap">חזרה למפת השלבים</button>
   </div>
 
 </div>
 
 <script>
-const ROUND_SIZE = 10;
+const LEVEL_COUNT = 15;
+const QUESTIONS_PER_LEVEL = 5;
 const OPTION_COUNT = 4;
+const PASS_MARK = 3;            // out of QUESTIONS_PER_LEVEL, to unlock the next
+const STORE_KEY = "dogQuizProgress";
 // The dataset sits at the repository root; this page is served from /quiz/.
 const DATA_ROOT = "../";
 
-let breeds = [];
+let levels = [];                // array of breed arrays, easiest level first
+let progress = { cleared: {} }; // level index -> best score
+let level = 0;
 let round = [];
 let index = 0;
 let points = 0;
@@ -184,6 +227,41 @@ function shuffle(list) {
 
 function pick(list, n) {
   return shuffle(list).slice(0, n);
+}
+
+/* Progress is a nicety, not the source of truth -- a browser that refuses
+   storage still plays, it just always starts at the first level. */
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) progress = JSON.parse(raw) || { cleared: {} };
+  } catch (err) { /* private mode, blocked storage */ }
+  if (!progress || typeof progress !== "object") progress = { cleared: {} };
+  if (!progress.cleared) progress.cleared = {};
+}
+
+function saveProgress() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(progress)); } catch (err) { /* ignore */ }
+}
+
+function unlocked(i) {
+  return i === 0 || progress.cleared[i - 1] >= PASS_MARK;
+}
+
+/* Wikidata sitelink counts rank the breeds from famous to obscure. Slicing
+   that order into bands gives levels that genuinely get harder, and because
+   the bands do not overlap, one playthrough never asks about the same breed
+   twice. */
+function buildLevels(breeds) {
+  const ranked = breeds.slice().sort((a, b) => (b.sitelinks || 0) - (a.sitelinks || 0));
+  const wanted = Math.min(LEVEL_COUNT, Math.floor(ranked.length / OPTION_COUNT));
+  if (wanted < 1) return [];
+  const size = Math.floor(ranked.length / wanted);
+  const out = [];
+  for (let i = 0; i < wanted; i++) {
+    out.push(i === wanted - 1 ? ranked.slice(i * size) : ranked.slice(i * size, (i + 1) * size));
+  }
+  return out;
 }
 
 function showError(html) {
@@ -208,37 +286,80 @@ async function load() {
     return;
   }
 
-  breeds = (Array.isArray(data) ? data : []).filter(
+  const breeds = (Array.isArray(data) ? data : []).filter(
     (b) => b && b.name_he && Array.isArray(b.images) && b.images.length > 0
   );
+  levels = buildLevels(breeds);
 
-  if (breeds.length < OPTION_COUNT) {
+  if (!levels.length) {
     showError(
       "<b>אין מספיק גזעים כדי לשחק.</b><br><br>נמצאו " + breeds.length +
       " גזעים עם תמונות, וצריך לפחות " + OPTION_COUNT + ". " +
-      "כדאי להריץ שוב את איסוף הנתונים ולבדוק את <code>failed.log</code>."
+      "כדאי להריץ שוב את איסוף הנתונים."
     );
     return;
   }
 
+  loadProgress();
   $("loading").classList.add("hidden");
-  $("game").classList.remove("hidden");
-  startRound();
+  showMap();
 }
 
-function startRound() {
-  round = pick(breeds, Math.min(ROUND_SIZE, breeds.length));
+function stars(score) {
+  if (score === undefined) return "";
+  if (score >= QUESTIONS_PER_LEVEL) return "★★★";
+  if (score >= PASS_MARK + 1) return "★★";
+  if (score >= PASS_MARK) return "★";
+  return "";
+}
+
+function showMap() {
+  $("game").classList.add("hidden");
+  $("end").classList.add("hidden");
+  $("map").classList.remove("hidden");
+
+  const cleared = levels.filter((_, i) => progress.cleared[i] >= PASS_MARK).length;
+  $("mapProgress").textContent = cleared + "/" + levels.length + " שלבים";
+  $("mapNote").textContent =
+    "הקושי נקבע לפי כמה הגזע מתועד בוויקיפדיה — בשלב 1 הגזעים המוכרים בעולם, " +
+    "ובשלבים הגבוהים גזעים נדירים. אותו גזע לא חוזר בין שלבים.";
+
+  const box = $("levels");
+  box.innerHTML = "";
+  levels.forEach((pool, i) => {
+    const open = unlocked(i);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "level" + (open ? "" : " locked")
+      + (progress.cleared[i] >= PASS_MARK ? " cleared" : "")
+      + (open && progress.cleared[i] === undefined ? " current" : "");
+    button.innerHTML = '<span class="n">' + (open ? (i + 1) : "🔒") + "</span>"
+      + '<span class="stars">' + stars(progress.cleared[i]) + "</span>";
+    button.disabled = !open;
+    if (open) button.onclick = () => startLevel(i);
+    box.appendChild(button);
+  });
+}
+
+function startLevel(i) {
+  level = i;
+  round = pick(levels[i], Math.min(QUESTIONS_PER_LEVEL, levels[i].length));
   index = 0;
   points = 0;
-  $("qtotal").textContent = round.length;
+  $("map").classList.add("hidden");
   $("end").classList.add("hidden");
   $("game").classList.remove("hidden");
+  $("qtotal").textContent = round.length;
+  $("levelTitle").textContent = "שלב " + (i + 1);
   showQuestion();
 }
 
 function showQuestion() {
   const breed = round[index];
-  const others = pick(breeds.filter((b) => b.slug !== breed.slug), OPTION_COUNT - 1);
+  // Distractors come from the same level, so a famous name never gives itself
+  // away among obscure ones.
+  const pool = levels[level].filter((b) => b.slug !== breed.slug);
+  const others = pick(pool, OPTION_COUNT - 1);
   const choices = shuffle([breed, ...others]);
 
   $("qnum").textContent = index + 1;
@@ -252,6 +373,7 @@ function showQuestion() {
   img.hidden = true;
   backdrop.style.backgroundImage = "";
   $("spinner").style.display = "grid";
+  $("spinner").textContent = "טוען תמונה…";
   img.onload = () => {
     img.hidden = false;
     $("spinner").style.display = "none";
@@ -298,20 +420,27 @@ $("next").onclick = () => {
   showQuestion();
 };
 
-$("again").onclick = startRound;
+$("again").onclick = () => startLevel(level);
+$("toMap").onclick = showMap;
 
 function finish() {
+  if (points > (progress.cleared[level] || 0)) {
+    progress.cleared[level] = points;
+    saveProgress();
+  }
+
   $("game").classList.add("hidden");
   $("end").classList.remove("hidden");
   $("finalScore").textContent = points;
   $("finalTotal").textContent = round.length;
 
-  const ratio = points / round.length;
+  const passed = points >= PASS_MARK;
+  const last = level + 1 >= levels.length;
+  $("endTitle").textContent = "שלב " + (level + 1) + (passed ? " הושלם" : " לא הושלם");
   $("verdict").textContent =
-    ratio === 1 ? "מושלם! אתה מומחה כלבים." :
-    ratio >= 0.7 ? "יפה מאוד!" :
-    ratio >= 0.4 ? "לא רע — עוד סבב ותשתפר." :
-    "יש עוד הרבה גזעים ללמוד…";
+    !passed ? "צריך " + PASS_MARK + " תשובות נכונות כדי לפתוח את השלב הבא." :
+    last ? "סיימת את כל השלבים. אתה מומחה כלבים." :
+    "שלב " + (level + 2) + " נפתח.";
 }
 
 load();

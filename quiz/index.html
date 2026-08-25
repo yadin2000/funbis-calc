@@ -130,10 +130,15 @@
   }
   .hidden { display: none !important; }
 
-  .levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 6px; }
+  .levels {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
+    gap: 8px;
+    margin-top: 6px;
+  }
   button.level {
     position: relative;
-    padding: 14px 8px 12px;
+    padding: 11px 6px 9px;
     font-family: inherit;
     background: var(--card);
     border: 2px solid var(--line);
@@ -142,8 +147,8 @@
     text-align: center;
     color: var(--ink);
   }
-  button.level .n { display: block; font-size: 1.3rem; font-weight: 800; }
-  button.level .stars { display: block; font-size: 0.8rem; margin-top: 3px; min-height: 1em; color: var(--accent); }
+  button.level .n { display: block; font-size: 1.15rem; font-weight: 800; }
+  button.level .stars { display: block; font-size: 0.7rem; margin-top: 2px; min-height: 1em; color: var(--accent); }
   button.level.locked { opacity: 0.45; cursor: not-allowed; background: transparent; }
   button.level.cleared { border-color: var(--correct); background: #f2faf5; }
   button.level.current { border-color: var(--accent); box-shadow: 0 0 0 3px #ffe9c4; }
@@ -178,7 +183,7 @@
       <h1>איזה גזע זה?</h1>
       <div class="score" id="mapProgress"></div>
     </header>
-    <p class="lead">15 שלבים, מהגזעים המוכרים ביותר עד הנדירים. כל שלב פותח את הבא אחריו.</p>
+    <p class="lead" id="mapLead"></p>
     <div class="levels" id="levels"></div>
     <p class="lead" id="mapNote" style="margin-top:16px"></p>
   </div>
@@ -213,7 +218,6 @@
 </div>
 
 <script>
-const LEVEL_COUNT = 15;
 const QUESTIONS_PER_LEVEL = 5;
 const OPTION_COUNT = 4;
 const PASS_MARK = 3;            // out of QUESTIONS_PER_LEVEL, to unlock the next
@@ -263,19 +267,28 @@ function unlocked(i) {
 }
 
 /* Wikidata sitelink counts rank the breeds from famous to obscure. Slicing
-   that order into bands gives levels that genuinely get harder, and because
-   the bands do not overlap, one playthrough never asks about the same breed
-   twice. */
+   that order into levels of QUESTIONS_PER_LEVEL means every breed is asked
+   exactly once across a full playthrough -- none is left as scenery -- and
+   because the slices do not overlap, none is ever asked twice. */
 function buildLevels(breeds) {
   const ranked = breeds.slice().sort((a, b) => (b.sitelinks || 0) - (a.sitelinks || 0));
-  const wanted = Math.min(LEVEL_COUNT, Math.floor(ranked.length / OPTION_COUNT));
-  if (wanted < 1) return [];
-  const size = Math.floor(ranked.length / wanted);
+  if (ranked.length < OPTION_COUNT) return [];
   const out = [];
-  for (let i = 0; i < wanted; i++) {
-    out.push(i === wanted - 1 ? ranked.slice(i * size) : ranked.slice(i * size, (i + 1) * size));
+  for (let i = 0; i < ranked.length; i += QUESTIONS_PER_LEVEL) {
+    out.push(ranked.slice(i, i + QUESTIONS_PER_LEVEL));
+  }
+  // A trailing level too small to fill a question is folded into the one before.
+  if (out.length > 1 && out[out.length - 1].length < 2) {
+    out[out.length - 2] = out[out.length - 2].concat(out.pop());
   }
   return out;
+}
+
+/* Wrong answers come from the level and its immediate neighbours: close
+   enough in difficulty to stay fair, wide enough that the same four names
+   do not repeat on every question of a level. */
+function neighbourhood(i) {
+  return [levels[i - 1] || [], levels[i], levels[i + 1] || []].flat();
 }
 
 function showError(html) {
@@ -334,9 +347,12 @@ function showMap() {
 
   const cleared = levels.filter((_, i) => progress.cleared[i] >= PASS_MARK).length;
   $("mapProgress").textContent = cleared + "/" + levels.length + " שלבים";
+  const breeds = levels.reduce((n, l) => n + l.length, 0);
+  $("mapLead").textContent = levels.length + " שלבים, מהגזעים המוכרים ביותר עד הנדירים. "
+    + "כל שלב פותח את הבא אחריו, וכל אחד מ-" + breeds + " הגזעים נשאל בדיוק פעם אחת.";
   $("mapNote").textContent =
     "הקושי נקבע לפי כמה הגזע מתועד בוויקיפדיה — בשלב 1 הגזעים המוכרים בעולם, " +
-    "ובשלבים הגבוהים גזעים נדירים. אותו גזע לא חוזר בין שלבים.";
+    "ובשלבים הגבוהים גזעים נדירים.";
 
   const box = $("levels");
   box.innerHTML = "";
@@ -357,7 +373,7 @@ function showMap() {
 
 function startLevel(i) {
   level = i;
-  round = pick(levels[i], Math.min(QUESTIONS_PER_LEVEL, levels[i].length));
+  round = shuffle(levels[i]);
   index = 0;
   points = 0;
   $("map").classList.add("hidden");
@@ -372,7 +388,7 @@ function showQuestion() {
   const breed = round[index];
   // Distractors come from the same level, so a famous name never gives itself
   // away among obscure ones.
-  const pool = levels[level].filter((b) => b.slug !== breed.slug);
+  const pool = neighbourhood(level).filter((b) => b.slug !== breed.slug);
   const others = pick(pool, OPTION_COUNT - 1);
   const choices = shuffle([breed, ...others]);
 

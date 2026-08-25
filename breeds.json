@@ -6,7 +6,9 @@
     "images": [
       "images/german-shepherd/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 92,
+    "fact": "כלב רועים גרמני (בעגה בלתי-מקצועית מכונה כלב זאב), המכונה לרוב רועה גרמני, הוא אחד מגזעי כלב הבית."
   },
   {
     "slug": "dingo",
@@ -15,7 +17,9 @@
     "images": [
       "images/dingo/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 87,
+    "fact": "דִּינְגּוֹ (שם מדעי: Canis lupus dingo) הוא כלב פרא המצוי בעיקר ביבשת אוסטרליה. מוצאו במזרח אסיה."
   },
   {
     "slug": "labrador-retriever",
@@ -24,7 +28,9 @@
     "images": [
       "images/labrador-retriever/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 81,
+    "fact": "לברדור רטריבר (או, בקיצור: לברדור) הוא גזע של תת-המין כלב הבית."
   },
   {
     "slug": "beagle",
@@ -33,7 +39,9 @@
     "images": [
       "images/beagle/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 72,
+    "fact": "הביגל הוא כלב ציד ממשפחת ההאונדים  (Hounds)."
   },
   {
     "slug": "chihuahua",
@@ -42,7 +50,9 @@
     "images": [
       "images/chihuahua/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 71,
+    "fact": "צ'יוואווה (בספרדית: Chihuahueño) הוא גזע הכלבים הקטן בעולם, וקרוי על שם מדינת צ'יוואווה במקסיקו. כלבי הצ'יוואווה ידועים בעיקר בשל קוטנם, עיניהם הגדולות, ואוזניהם הגדולות והזקורות."
   },
   {
     "slug": "bulldog",
@@ -51,7 +61,9 @@
     "images": [
       "images/bulldog/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 69,
+    "fact": "בולדוג אנגלי, ובקיצור בולדוג, הוא אחד מגזעי כלב הבית, השייך למשפחת הכלביים."
   },
   {
     "slug": "golden-retriever",
@@ -60,7 +72,9 @@
     "images": [
       "images/golden-retriever/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 69,
+    "fact": "גולדן רטריבר (מילולית: \"מחזיר זהוב\" - מלשון הפועל האנגלי: retrieve=רטריב, שפירושו: להשיב, להחזיר חפץ לבעליו או למקור-מוצאו, שם שניתן לגזע כלבים זה על שם תכונתו המעולה של כלב זה להחזיר לצייד ציד-ציפורים ללא כל גרימת נזק לעוף, בגין אחיזת-פיו…"
   },
   {
     "slug": "dachshund",
@@ -69,7 +83,9 @@
     "images": [
       "images/dachshund/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 68,
+    "fact": "תחש, המכונה כלב נקניק, כלב בייגלה ודאקל, הוא כלב קצר רגליים וארוך גוף ממשפחת כלבי הציד."
   },
   {
     "slug": "rottweiler",
@@ -78,7 +94,9 @@
     "images": [
       "images/rottweiler/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 66,
+    "fact": "רוֹטְווַיְילֶר מצגרהונד (בגרמנית: Rottweiler Metzgerhund; \"כלב הקַצָּבִים של רוטווייל\") הוא גזע במין כלב, השייך למשפחת הכלביים."
   },
   {
     "slug": "akita",
@@ -87,7 +105,9 @@
     "images": [
       "images/akita/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 65,
+    "fact": "אקיטה הוא גזע כלבים שמקורו ביפן, בעל מבנה גוף מרובע ומוצק. אחדים ממאפייניו הבולטים של האקיטה הם זנבו המתגלגל על גבו, האוזניים הקטנות המכוונות קדימה והעיניים המשולשות."
   },
   {
     "slug": "pug",
@@ -96,7 +116,9 @@
     "images": [
       "images/pug/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 62,
+    "fact": "פאג הוא כלב בעל פרצוף פחוס וגוף קטן. הפאג מוגדר ככלב לוויה."
   },
   {
     "slug": "dalmatian",
@@ -105,16 +127,9 @@
     "images": [
       "images/dalmatian/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "poodle",
-    "name_en": "poodle",
-    "name_he": "פודל",
-    "images": [
-      "images/poodle/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 61,
+    "fact": "הדלמטי הוא גזע של כלב הבית, המשמש ככלב ציד. מקור שמו באזור מוצאו, אזור דלמטיה שבקרואטיה של ימינו."
   },
   {
     "slug": "boxer",
@@ -123,7 +138,20 @@
     "images": [
       "images/boxer/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 61,
+    "fact": "הבוקסר הוא אחד מגזעי כלב הבית. זהו כלב מוצק, גדול, בעל שיער קצר וחלק בצבעים חום, מנומר, או לבן."
+  },
+  {
+    "slug": "poodle",
+    "name_en": "poodle",
+    "name_he": "פודל",
+    "images": [
+      "images/poodle/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 61,
+    "fact": "פודל (מגרמנית: Pudel) הוא סוג של כלב. קיימים פודלים בגדלים, צבעים וסוגי פרוות שונים."
   },
   {
     "slug": "siberian-husky",
@@ -132,7 +160,9 @@
     "images": [
       "images/siberian-husky/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 61,
+    "fact": "הָאסְקִי סִיבִּירִי הוא כלב עבודה ושירות בגודל בינוני, שמקורו במזרח סיביר; שייך למשפחת הזאבים ולקבוצה כלבי שפיץ. זהו זן פעיל, גמיש ואנרגטי."
   },
   {
     "slug": "great-dane",
@@ -141,7 +171,9 @@
     "images": [
       "images/great-dane/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 60,
+    "fact": "דֶּנִי ענק (נקרא גם \"מסטיף גרמני\", \"כלב גרמני\" ו\"הדני הגדול\") הוא גזע של תת המין כלב הבית."
   },
   {
     "slug": "dobermann",
@@ -150,7 +182,9 @@
     "images": [
       "images/dobermann/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 60,
+    "fact": "דּוֹבֶּרְמָן פִּינְצֵ'ר או דוברמן הוא גזע בתת-המין כלב הבית, אשר פותח בסביבות שנת 1890 בידי הגרמני קרל פרידריך לואיס דוברמן. כלבי דוברמן הם כלבי עבודה ושמירה הנחשבים לאינטליגנטים, דרוכים ופעילים."
   },
   {
     "slug": "border-collie",
@@ -159,7 +193,9 @@
     "images": [
       "images/border-collie/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 58,
+    "fact": "בורדר קולי הוא אחד מגזעי כלב הבית. הוא טופח לצורך שימוש בו כסיוע לרעיית צאן."
   },
   {
     "slug": "chow-chow",
@@ -168,7 +204,9 @@
     "images": [
       "images/chow-chow/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 56,
+    "fact": "צ'או צ'או (באנגלית: Chow Chow) הוא גזע כלבים השייך לכלבי השפיץ ומוצאו במזרח הרחוק. הצ'או צ'או הוא כלב יוצא דופן בשל לשונו ופיו הסגולים ובשל רגליו האחוריות הישרות לחלוטין."
   },
   {
     "slug": "st-bernard",
@@ -177,7 +215,9 @@
     "images": [
       "images/st-bernard/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 55,
+    "fact": "סן ברנרד הוא גזע של כלב עבודה גדול מהאלפים הפניניים בצפון איטליה ודרום שווייץ, שהוכלא למטרות חילוץ והצלה. הכלב התפרסם בזכות סיפורים על הצלות באלפים ובזכות גודלו העצום."
   },
   {
     "slug": "yorkshire-terrier",
@@ -186,7 +226,9 @@
     "images": [
       "images/yorkshire-terrier/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 54,
+    "fact": "גזע היורקשייר טרייר (באנגלית: Yorkshire Terrier), שמכונה גם 'יורקי', פותח באנגליה החל מאמצע המאה ה-19 ומוגדר כיום בקטגוריית \"כלבי צעצוע\" (Toy dog). כפי ששמו מעיד, הגזע פותח מגזעי טרייר במחוזות 'יורקשייר' ו'לנקשייר'."
   },
   {
     "slug": "afghan-hound",
@@ -195,7 +237,9 @@
     "images": [
       "images/afghan-hound/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 53,
+    "fact": "כלב אפגני (באנגלית: Afghan Hound) הוא כלב ציד, ממשפחת כלבי הרוח. הכלב האפגני קיים כבר אלפי שנים, והוא אחד מגזעי הכלבים העתיקים ביותר."
   },
   {
     "slug": "greyhound",
@@ -204,7 +248,9 @@
     "images": [
       "images/greyhound/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 53,
+    "fact": "גרייהאונד (באנגלית: Greyhound) הוא גזע כלבים השייך למשפחת כלבי הרוח ונחשב לכלב המהיר ביותר. משום כך, זכה להיות גם לאחד הגזעים המפורסמים."
   },
   {
     "slug": "basenji",
@@ -213,7 +259,9 @@
     "images": [
       "images/basenji/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 52,
+    "fact": "בסנג'י (באנגלית: Basenji) הוא כלב ציד שמקורו ומוצאו ברפובליקה הדמוקרטית של קונגו במרכז אפריקה. הפדרציה הבינלאומית לכלבנות מגדירה את סוג הכלב ככלב שפיץ מסוג פרימיטיבי."
   },
   {
     "slug": "newfoundland-dog",
@@ -222,7 +270,9 @@
     "images": [
       "images/newfoundland-dog/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 51,
+    "fact": "ניופאונדלנד הוא אחד מגזעי כלב הבית, השייך למשפחת הכלביים."
   },
   {
     "slug": "shih-tzu",
@@ -231,7 +281,9 @@
     "images": [
       "images/shih-tzu/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 51,
+    "fact": "שי טסו (לעיתים נכתב: שיצו, מסינית: 西施犬) הוא גזע של כלב הבית."
   },
   {
     "slug": "bull-terrier",
@@ -240,16 +292,9 @@
     "images": [
       "images/bull-terrier/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "samoyed",
-    "name_en": "Samoyed",
-    "name_he": "סמוייד",
-    "images": [
-      "images/samoyed/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 50,
+    "fact": "הבול טרייר (באנגלית: Bull Terrier) הוא גזע של כלב ממשפחת הטריירים. מקורו באנגליה."
   },
   {
     "slug": "maltese",
@@ -258,7 +303,20 @@
     "images": [
       "images/maltese/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 50,
+    "fact": "מלטזי הוא כלב קטן מגזע כלבי לוויה הידוע בפרוותו הלבנה החלקה והארוכה."
+  },
+  {
+    "slug": "samoyed",
+    "name_en": "Samoyed",
+    "name_he": "סמוייד",
+    "images": [
+      "images/samoyed/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 50,
+    "fact": "הסָמוֹיֵד (Samoyed) הוא גזע של כלבי בית השייך לקבוצת כלבי השפיץ."
   },
   {
     "slug": "alaskan-malamute",
@@ -267,7 +325,9 @@
     "images": [
       "images/alaskan-malamute/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 49,
+    "fact": "אלסקן מלמוט שייך למשפחת הכלביים, והוא זן של גזע ההאסקי (Husky), שכולל גם את ההאסקי הסיבירי וכלב גרינלנדי. מקורו של האלסקן מלמוט באלסקה, והוא כלב עבודה ששימש במקור לגרירת מזחלות בשלג."
   },
   {
     "slug": "pekingese",
@@ -276,7 +336,9 @@
     "images": [
       "images/pekingese/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 48,
+    "fact": "פקינז הוא גזע כלבים שמקורו בסין."
   },
   {
     "slug": "shiba-inu",
@@ -285,7 +347,9 @@
     "images": [
       "images/shiba-inu/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 48,
+    "fact": "שִׁיבָּה אִינוּ (ביפנית: 柴犬) הוא גזע כלבים ממשפחת כלבי שפיץ ואשר מקורו ביפן. זהו כלב קטן וזריז אשר מותאם היטב לציד ולתוואי שטח הררי."
   },
   {
     "slug": "french-bulldog",
@@ -294,7 +358,9 @@
     "images": [
       "images/french-bulldog/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 47,
+    "fact": "בולדוג צרפתי הוא גזע של כלבים קטנים. שמו מעיד, לכאורה, שצרפת היא מדינת המקור, אך לאמריקאים ולבריטים היה ככל הנראה תפקיד גדול יותר בפיתוח הגזע."
   },
   {
     "slug": "airedale-terrier",
@@ -303,7 +369,9 @@
     "images": [
       "images/airedale-terrier/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 46,
+    "fact": "האיירדיל טרייר (באנגלית: Airedale Terrier) הוא כלב בית מקבוצת הטריירים."
   },
   {
     "slug": "shar-pei",
@@ -312,7 +380,9 @@
     "images": [
       "images/shar-pei/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 46,
+    "fact": "שר-פיי (בסינית - 沙皮, פיניין: Shā pí, תרגום מילולי: \"עור - חול\", ומשמעו נייר זכוכית) הוא גזע כלבים בעל מראה \"מקומט\". הגזע קיבל את שמו הודות לאיכות הפרווה, אשר יש שמשווים אותה לפעמים לנייר זכוכית."
   },
   {
     "slug": "australian-shepherd",
@@ -321,7 +391,9 @@
     "images": [
       "images/australian-shepherd/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 45,
+    "fact": "רועה אוסטרלי הוא גזע של כלב רועים."
   },
   {
     "slug": "jack-russell-terrier",
@@ -330,7 +402,9 @@
     "images": [
       "images/jack-russell-terrier/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 45,
+    "fact": "ג'ק ראסל טרייר (באנגלית: Jack Russell Terrier) הוא גזע של כלב הבית. מספר הגזע שלו הוא #345."
   },
   {
     "slug": "west-highland-white-terrier",
@@ -339,7 +413,9 @@
     "images": [
       "images/west-highland-white-terrier/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 44,
+    "fact": "טרייר גבעות מערבי (באנגלית: West Highland White Terrier; (מכונה \"ווסטי\") הוא גזע של תת-המין כלב הבית, מקבוצת הטריירים."
   },
   {
     "slug": "dogo-argentino",
@@ -348,7 +424,9 @@
     "images": [
       "images/dogo-argentino/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 44,
+    "fact": "דוֹגוֹ אַרְגֶּנְטִינוֹ (Dogo Argentino) הוא גזע של כלב. זהו כלבה הלאומי של ארגנטינה."
   },
   {
     "slug": "caucasian-shepherd-dog",
@@ -357,7 +435,9 @@
     "images": [
       "images/caucasian-shepherd-dog/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 44,
+    "fact": "רועה קווקזי, המכונה לעיתים כלב הרים קווקזי, הוא גזע של כלב רועים הנפוץ בעיקר בגאורגיה, בארמניה, בצפון הקווקז ובטורקיה. הוא משמש לשמירה על עדרים, בעיקר מפני טורפים, כגון זאבים ודובים."
   },
   {
     "slug": "irish-wolfhound",
@@ -366,7 +446,9 @@
     "images": [
       "images/irish-wolfhound/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 44,
+    "fact": "וולפהאונד אירי (באנגלית: Irish Wolfhound) הוא כלב צייד ענק ממשפחת כלבי הרוח. הוולפהאונד האירי נחשב לגזע הגבוה ביותר שקיים היום, והוא עשוי להתפתח לגודל של סוס פוני."
   },
   {
     "slug": "bloodhound",
@@ -375,16 +457,9 @@
     "images": [
       "images/bloodhound/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "english-setter",
-    "name_en": "English Setter",
-    "name_he": "סטר אנגלי",
-    "images": [
-      "images/english-setter/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 43,
+    "fact": "כלב דם (באנגלית: Bloodhound או St. Hubert Hound) הוא גזע של כלב גדול אשר פותח באופן מיוחד לאיתור עקבות ריח אדם."
   },
   {
     "slug": "borzoi",
@@ -393,7 +468,9 @@
     "images": [
       "images/borzoi/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 43,
+    "fact": "הבורזוי (ברוסית: Русская псовая борзая, נהגה: russkaya psovaya borzaya) הוא כלב ציד גדול ממשפחת כלבי הרוח המאופיינים במהירות ריצתם ובכושר ראייתם החדה. מוצא הגזע ברוסיה."
   },
   {
     "slug": "bullmastiff",
@@ -402,7 +479,20 @@
     "images": [
       "images/bullmastiff/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 43,
+    "fact": "בול מסטיף שייך למשפחת הכלביים."
+  },
+  {
+    "slug": "english-setter",
+    "name_en": "English Setter",
+    "name_he": "סטר אנגלי",
+    "images": [
+      "images/english-setter/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 43,
+    "fact": "סֶטֶר אנגלי (באנגלית: English Setter) הוא תת-מין של כלב השייך למשפחת הכלביים."
   },
   {
     "slug": "central-asian-shepherd-dog",
@@ -411,16 +501,9 @@
     "images": [
       "images/central-asian-shepherd-dog/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "cane-corso",
-    "name_en": "Cane Corso",
-    "name_he": "קאנה קורסו",
-    "images": [
-      "images/cane-corso/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 43,
+    "fact": "כלב רועים מרכז אסיאתי, המכונה גם כלב רועים אסיאתי, הוא כלב רועים המשמש לשמירה על עדרים בעיקר מפני חיות טורפות כגון זאבים ודובים. מכאן נובע שמו בשפות רבות (וולקודב ברוסית - \"מוחץ זאבים\", מרגקי בטורקמנית - \"מרסק זאבים\")."
   },
   {
     "slug": "australian-cattle-dog",
@@ -429,7 +512,9 @@
     "images": [
       "images/australian-cattle-dog/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 42,
+    "fact": "כלב בקר אוסטרלי (באנגלית: Australian Cattle Dog) הוא כלב רועים שפותח במקור באוסטרליה על מנת לרעות עדרי בקר למרחקים גדולים בתנאי שטח קשים. היום כלבים מגזע זה מאופיינים במספר תכונות: כוח עבודה רב לשעות ממושכות, בן לוויה אתלטי ואינטליגנטי,…"
   },
   {
     "slug": "bernese-mountain-dog",
@@ -438,7 +523,20 @@
     "images": [
       "images/bernese-mountain-dog/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 42,
+    "fact": "ברנר זננהונד הוא גזע כלב הרים ברניזי גדול, אחד מארבעה גזעי כלבים מסוג זננהונד הבאים מהאלפים השווייצריים."
+  },
+  {
+    "slug": "cane-corso",
+    "name_en": "Cane Corso",
+    "name_he": "קאנה קורסו",
+    "images": [
+      "images/cane-corso/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 42,
+    "fact": "קאנה קורסו (באיטלקית: Cane Corso) הוא גזע של כלב בית בעל לסתות גדולות."
   },
   {
     "slug": "saluki",
@@ -447,7 +545,9 @@
     "images": [
       "images/saluki/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 42,
+    "fact": "סלוקי הוא גזע של כלב רוח, המתאפיין בגוף צר ורזה ובמהירות ריצה גבוהה. סלוקי הוא אחד מגזעי הכלבים המבויתים העתיקים ביותר."
   },
   {
     "slug": "american-pit-bull-terrier",
@@ -456,16 +556,9 @@
     "images": [
       "images/american-pit-bull-terrier/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "cairn-terrier",
-    "name_en": "Cairn Terrier",
-    "name_he": "קאירן טרייר",
-    "images": [
-      "images/cairn-terrier/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 41,
+    "fact": "אָמֶרִיקָן פִּיטְבּוּל טֶרְייֵר ובקצרה פיטבול, הוא כלב בגודל בינוני, בעל פרווה קצרה ומבנה גוף אתלטי, אשר מקורו באנגליה ואירלנד."
   },
   {
     "slug": "basset-hound",
@@ -474,7 +567,20 @@
     "images": [
       "images/basset-hound/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 41,
+    "fact": "בָּאסֶט הַאוּנְד (מלועזית: Basset Hound) הוא כלב ציד קצר רגליים, המהווה אחד משישה גזעי באסט מוכרים בצרפת. הבאסט הוא כלב גישוש אשר נוצר על ידי האדם לצורך ציד ארנבות."
+  },
+  {
+    "slug": "cairn-terrier",
+    "name_en": "Cairn Terrier",
+    "name_he": "קאירן טרייר",
+    "images": [
+      "images/cairn-terrier/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 41,
+    "fact": "קאירן טרייר הוא גזע של כלב בית מקבוצת הטריירים."
   },
   {
     "slug": "irish-setter",
@@ -483,7 +589,9 @@
     "images": [
       "images/irish-setter/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 41,
+    "fact": "סֶטֶר אירי (באנגלית: Irish Setter) הוא תת-מין של כלב השייך למשפחת הכלביים."
   },
   {
     "slug": "shetland-sheepdog",
@@ -492,7 +600,9 @@
     "images": [
       "images/shetland-sheepdog/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 41,
+    "fact": "כלב הרועים השטלנדי (באנגלית: Shetland Sheepdog) הוא גזע של תת-המין כלב הבית."
   },
   {
     "slug": "bichon-frise",
@@ -501,7 +611,9 @@
     "images": [
       "images/bichon-frise/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 40,
+    "fact": "בישון פריזה הוא גזע של כלבי לוויה קטנים."
   },
   {
     "slug": "american-staffordshire-terrier",
@@ -510,16 +622,9 @@
     "images": [
       "images/american-staffordshire-terrier/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "english-cocker-spaniel",
-    "name_en": "English Cocker Spaniel",
-    "name_he": "קוקר ספניאל אנגלי",
-    "images": [
-      "images/english-cocker-spaniel/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 40,
+    "fact": "סטאפורדשייר טרייר אמריקאי (באנגלית: American Staffordshire Terrier), המכונה גם פיטבול אמסטף או בקיצור אמסטף (Amstaff), הוא גזע של כלב הבית מסוג טרייר."
   },
   {
     "slug": "cavalier-king-charles-spaniel",
@@ -528,16 +633,9 @@
     "images": [
       "images/cavalier-king-charles-spaniel/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "puli",
-    "name_en": "Puli",
-    "name_he": "פולי",
-    "images": [
-      "images/puli/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 40,
+    "fact": "הקבליר קינג צ'ארלס ספאנייל (באנגלית: Cavalier King Charles Spaniel) הוא אחד מגזעי כלב הבית, השייך למשפחת הכלביים."
   },
   {
     "slug": "komondor",
@@ -546,7 +644,31 @@
     "images": [
       "images/komondor/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 40,
+    "fact": "קומונדור (Komondor) הוא כלב שמירה הונגרי, הנמצא רבות בשימוש לשמירה על עדרים מפני טורפים. זהו כלב מאסיבי, חזק ונאמן לבעליו."
+  },
+  {
+    "slug": "puli",
+    "name_en": "Puli",
+    "name_he": "פולי",
+    "images": [
+      "images/puli/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 40,
+    "fact": "פולי (Puli) הוא גזע של כלב רועים הונגרי ואף נחשב לכלב הלאומי הוא בעל מראה מיוחד הודות ל\"ראסטות\" שבפרוותו. הפולי מזכיר כלב הונגרי אחר, הקומונדור, אולם הוא קטן ממנו משמעותית ושונה ממנו באופיו."
+  },
+  {
+    "slug": "english-cocker-spaniel",
+    "name_en": "English Cocker Spaniel",
+    "name_he": "קוקר ספניאל אנגלי",
+    "images": [
+      "images/english-cocker-spaniel/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 40,
+    "fact": ""
   },
   {
     "slug": "belgian-shepherd",
@@ -555,7 +677,9 @@
     "images": [
       "images/belgian-shepherd/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 39,
+    "fact": "רועה בלגי הוא גזע של כלב רועים המשמש את האדם לצרכים שונים."
   },
   {
     "slug": "old-english-sheepdog",
@@ -564,7 +688,9 @@
     "images": [
       "images/old-english-sheepdog/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 39,
+    "fact": "כלב צאן אנגלי עתיק הוא אחד מגזעי כלב הבית, מקורו באנגליה בתחילת המאה ה-19. ייעודו היה בעבר ככלב צאן, אך היום הוא משמש בעיקר כחיית מחמד ולתצוגות."
   },
   {
     "slug": "boston-terrier",
@@ -573,7 +699,9 @@
     "images": [
       "images/boston-terrier/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 39,
+    "fact": "בוסטון טרייר הוא גזע כלבים שמקורו בארצות הברית ובכך מהווה את אחד הגזעים היחידים שפותחו בארצות הברית. מקורו של גזע קטן זה הוא כנראה בהכלאות של בולדוג וטרייר אנגלי לבין בולדוג צרפתי ובוקסר אשר נעשו בבוסטון."
   },
   {
     "slug": "azawakh",
@@ -582,16 +710,9 @@
     "images": [
       "images/azawakh/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "english-mastiff",
-    "name_en": "English Mastiff",
-    "name_he": "מסטיף אנגלי",
-    "images": [
-      "images/english-mastiff/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 39,
+    "fact": "אזוואק (באנגלית: Azawakh) הוא גזע של כלב הבית מסוג כלב רוח שמקורו באפריקה."
   },
   {
     "slug": "lhasa-apso",
@@ -600,7 +721,20 @@
     "images": [
       "images/lhasa-apso/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 39,
+    "fact": "לֵהָאסָה אַפְּסוֹ (באנגלית: Lhasa Apso) הוא גזע כלבים המשתייך לקבוצת \"כלבי לוויה זעירים\". במשך שנים רבות היה הגזע ייחודי לטיבט בלבד."
+  },
+  {
+    "slug": "english-mastiff",
+    "name_en": "English Mastiff",
+    "name_he": "מסטיף אנגלי",
+    "images": [
+      "images/english-mastiff/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 39,
+    "fact": "מסטיף אנגלי הוא תת-מין של גזע כלבי מסטיף, הנמצא במשפחת כלבי השמירה הגדולים.[דרוש מקור]."
   },
   {
     "slug": "miniature-pinscher",
@@ -609,7 +743,9 @@
     "images": [
       "images/miniature-pinscher/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 39,
+    "fact": "פִּינְצֵ'ר ננסי הוא גזע קטן של כלב הבית."
   },
   {
     "slug": "scottish-terrier",
@@ -618,7 +754,9 @@
     "images": [
       "images/scottish-terrier/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 39,
+    "fact": "סקוטיש טֵרִיֵּר (מאנגלית: טרייר סקוטי) הוא גזע כלבים מקבוצת הטריירים. הוא אחד מחמשת גזעי הכלבים שמקורם בסקוטלנד."
   },
   {
     "slug": "pyrenean-mountain-dog",
@@ -627,7 +765,9 @@
     "images": [
       "images/pyrenean-mountain-dog/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 38,
+    "fact": "כלב ההרים הפירנאי הוא גזע של תת המין כלב הבית."
   },
   {
     "slug": "irish-terrier",
@@ -636,7 +776,9 @@
     "images": [
       "images/irish-terrier/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 38,
+    "fact": "הטרייר האירי (באנגלית: Irish Terrier) הוא גזע של כלב הבית."
   },
   {
     "slug": "fox-terrier",
@@ -645,7 +787,9 @@
     "images": [
       "images/fox-terrier/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 38,
+    "fact": "פוקס טֵרִייר (Fox Terrier) הוא גזע של כלב הבית."
   },
   {
     "slug": "whippet",
@@ -654,16 +798,9 @@
     "images": [
       "images/whippet/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "border-terrier",
-    "name_en": "Border Terrier",
-    "name_he": "בורדר טרייר",
-    "images": [
-      "images/border-terrier/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 38,
+    "fact": "וויפט (באנגלית: Whippet) הוא כלב ציד, ממשפחת כלבי רוח. וויפט נחשב לכלב עם התאוצה המהירה ביותר למרחקים קצרים מבין כלבי הרוח."
   },
   {
     "slug": "german-shorthaired-pointer",
@@ -672,16 +809,9 @@
     "images": [
       "images/german-shorthaired-pointer/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "vizsla",
-    "name_en": "Vizsla",
-    "name_he": "ויסלה",
-    "images": [
-      "images/vizsla/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 37,
+    "fact": "פוינטר גרמני קצר השיער הוא גזע כלבים השייך למשפחת הכלביים. הגזע פותח במאה ה-19 בגרמניה למטרת ציד."
   },
   {
     "slug": "neapolitan-mastiff",
@@ -690,7 +820,31 @@
     "images": [
       "images/neapolitan-mastiff/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 37,
+    "fact": "מסטינו נפוליטנו הוא שמו של גזע כלבים."
+  },
+  {
+    "slug": "vizsla",
+    "name_en": "Vizsla",
+    "name_he": "ויסלה",
+    "images": [
+      "images/vizsla/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 37,
+    "fact": "ויסלה (בהונגרית: Magyar Vizsla, מבוטא כ-\"ויז'לה\") הוא גזע של תת המין כלב הבית."
+  },
+  {
+    "slug": "border-terrier",
+    "name_en": "Border Terrier",
+    "name_he": "בורדר טרייר",
+    "images": [
+      "images/border-terrier/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 37,
+    "fact": ""
   },
   {
     "slug": "welsh-corgi",
@@ -699,7 +853,9 @@
     "images": [
       "images/welsh-corgi/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 36,
+    "fact": "ולש קורגי (Welsh Corgi) הוא סוג של כלב רועים ולשי. המילים \"קור\" ו-\"גי\" משמען ככל הנראה \"כלב גמדי\" בוולשית עתיקה."
   },
   {
     "slug": "bergamasco-shepherd",
@@ -708,7 +864,9 @@
     "images": [
       "images/bergamasco-shepherd/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 36,
+    "fact": "רועה ברגמסקו (באיטלקית: pastore bergamasco) הוא גזע כלבים, שמקורו בהרי האלפים האיטלקיים, וקרוי על שם עמק ברגמסקה (סמוך לעיר ברגמו), שם שימש ככלב רועים."
   },
   {
     "slug": "gordon-setter",
@@ -717,16 +875,9 @@
     "images": [
       "images/gordon-setter/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "xoloitzcuintle",
-    "name_en": "Xoloitzcuintle",
-    "name_he": "שולואיצקווינטלי",
-    "images": [
-      "images/xoloitzcuintle/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 36,
+    "fact": "גורדון סֶטֶר (באנגלית: Gordon Setter) הוא תת-מין של כלב השייך למשפחת הכלביים. שמו הגיע לו מהשבט הסקוטי גורדון."
   },
   {
     "slug": "canaan-dog",
@@ -735,7 +886,9 @@
     "images": [
       "images/canaan-dog/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 36,
+    "fact": "כֶּלֶב כְּנַעֲנִי, המוכר גם בשמות \"זאב כנעני\", \"רועה ארץ ישראלי\" ו\"רועה כנעני\", הוא הכלב הגזעי היחיד שמוצאו בארץ ישראל. הגזע הכנעני משתייך לתת-המשפחה כלבי שפיץ."
   },
   {
     "slug": "rhodesian-ridgeback",
@@ -744,7 +897,20 @@
     "images": [
       "images/rhodesian-ridgeback/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 36,
+    "fact": "הרידג'בק הרודזי (באנגלית: Rhodesian Ridgeback) הוא כלב ציד גדול שמוצאו מדרום אפריקה, הקרוי על שם הפס האופייני שעל גבו. הרידג'בק נחשב לכלב אינטליגנטי, נאמן, חזק ואמיץ."
+  },
+  {
+    "slug": "xoloitzcuintle",
+    "name_en": "Xoloitzcuintle",
+    "name_he": "שולואיצקווינטלי",
+    "images": [
+      "images/xoloitzcuintle/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 36,
+    "fact": ""
   },
   {
     "slug": "staffordshire-bull-terrier",
@@ -753,7 +919,9 @@
     "images": [
       "images/staffordshire-bull-terrier/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 36,
+    "fact": ""
   },
   {
     "slug": "bearded-collie",
@@ -762,25 +930,9 @@
     "images": [
       "images/bearded-collie/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "american-bulldog",
-    "name_en": "American Bulldog",
-    "name_he": "בולדוג אמריקאי",
-    "images": [
-      "images/american-bulldog/1.jpg"
-    ],
-    "image_count": 1
-  },
-  {
-    "slug": "chinese-crested-dog",
-    "name_en": "Chinese Crested Dog",
-    "name_he": "סיני מצויץ",
-    "images": [
-      "images/chinese-crested-dog/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 35,
+    "fact": "בירדד קולי (הקולי המזוקן) הוא גזע של תת-המין כלב הבית. מוצאו של הבירדד קולי הוא מאנגליה ומסקוטלנד."
   },
   {
     "slug": "beauceron",
@@ -789,7 +941,20 @@
     "images": [
       "images/beauceron/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 35,
+    "fact": "בוסרון (נקרא לעיתים גם ביוכרון או רועה צרפתי), הוא כלב רועים עתיק, שמקורו במישורי מרכז צרפת."
+  },
+  {
+    "slug": "chinese-crested-dog",
+    "name_en": "Chinese Crested Dog",
+    "name_he": "סיני מצויץ",
+    "images": [
+      "images/chinese-crested-dog/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 35,
+    "fact": "הסיני המצויץ הוא גזע כלבים."
   },
   {
     "slug": "weimaraner",
@@ -798,25 +963,20 @@
     "images": [
       "images/weimaraner/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 35,
+    "fact": "ויימרנר (באנגלית: Weimaraner) הוא אחד מגזעי כלב הבית."
   },
   {
-    "slug": "bolognese",
-    "name_en": "Bolognese",
-    "name_he": "בולונז",
+    "slug": "american-bulldog",
+    "name_en": "American Bulldog",
+    "name_he": "בולדוג אמריקאי",
     "images": [
-      "images/bolognese/1.jpg"
+      "images/american-bulldog/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "italian-greyhound",
-    "name_en": "Italian Greyhound",
-    "name_he": "גרייהאונד איטלקי",
-    "images": [
-      "images/italian-greyhound/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 35,
+    "fact": ""
   },
   {
     "slug": "papillon",
@@ -825,16 +985,31 @@
     "images": [
       "images/papillon/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 34,
+    "fact": "פפיון הוא כלב לוויה זעיר שהיה מצוי בבתיהם של בני אצולה, מוצאו בצרפת ובבלגיה. יש הגורסים שמקורו בספנייל ספרדי ננסי שהיה מצוי במאה ה-16."
   },
   {
-    "slug": "abruzzo-maremma-sheepdog",
-    "name_en": "Abruzzo-Maremma Sheepdog",
-    "name_he": "מרמנו",
+    "slug": "italian-greyhound",
+    "name_en": "Italian Greyhound",
+    "name_he": "גרייהאונד איטלקי",
     "images": [
-      "images/abruzzo-maremma-sheepdog/1.jpg"
+      "images/italian-greyhound/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 34,
+    "fact": "הגרייהאונד האיטלקי (באנגלית: Italian Greyhound) הוא גזע כלב אשר שייך למשפחת הכלביים."
+  },
+  {
+    "slug": "bolognese",
+    "name_en": "Bolognese",
+    "name_he": "בולונז",
+    "images": [
+      "images/bolognese/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 34,
+    "fact": ""
   },
   {
     "slug": "australian-kelpie",
@@ -843,7 +1018,20 @@
     "images": [
       "images/australian-kelpie/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 33,
+    "fact": "קלפי אוסטרלי, המכונה בקיצור קלפי, הוא גזע של כלב הבית הנכלל בקבוצת כלבי הבקר והצאן. זהו גזע שמוצאו באוסטרליה, משם יוצא לרחבי העולם ככלב רועים מוצלח."
+  },
+  {
+    "slug": "abruzzo-maremma-sheepdog",
+    "name_en": "Abruzzo-Maremma Sheepdog",
+    "name_he": "מרמנו",
+    "images": [
+      "images/abruzzo-maremma-sheepdog/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 33,
+    "fact": "המרמנו (מכונה גם: אמרניני באיטלקית: Cane da pastore Maremmano-Abruzzese) הוא גזע כלב שמקורו באיטליה. הוא משמש לרעיית צאן."
   },
   {
     "slug": "dogue-de-bordeaux",
@@ -852,25 +1040,9 @@
     "images": [
       "images/dogue-de-bordeaux/1.jpg"
     ],
-    "image_count": 1
-  },
-  {
-    "slug": "belgian-malinois",
-    "name_en": "Belgian Malinois",
-    "name_he": "רועה בלגי (מלינואה)",
-    "images": [
-      "images/belgian-malinois/1.jpg"
-    ],
-    "image_count": 1
-  },
-  {
-    "slug": "new-guinea-singing-dog",
-    "name_en": "New Guinea singing dog",
-    "name_he": "הכלבים השרים מגינאה החדשה",
-    "images": [
-      "images/new-guinea-singing-dog/1.jpg"
-    ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 33,
+    "fact": "דוג דה בורדו (בצרפתית: Dogue de Bordeaux), הידוע גם כמסטיף צרפתי, הוא כלב בית ושייך למשפחת הכלביים."
   },
   {
     "slug": "tibetan-terrier",
@@ -879,16 +1051,31 @@
     "images": [
       "images/tibetan-terrier/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 33,
+    "fact": "טרייר טיבטי (באנגלית: Tibetan Terrier) הוא גזע כלב מסוג טרייר, אך בניגוד לכלבי הטרייר האחרים שהורבעו על מנת לחסל עכברושים, כלבי הטרייר הטיבטי טופחו על מנת להיות כלבי לוויה, ולאו דווקא כלבי עבודה ופיקוח."
   },
   {
-    "slug": "white-swiss-shepherd",
-    "name_en": "White Swiss Shepherd",
-    "name_he": "רועה שווייצרי לבן",
+    "slug": "belgian-malinois",
+    "name_en": "Belgian Malinois",
+    "name_he": "רועה בלגי (מלינואה)",
     "images": [
-      "images/white-swiss-shepherd/1.jpg"
+      "images/belgian-malinois/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 33,
+    "fact": "מלינואה (בצרפתית: Malinois) הוא גזע של כלבים. מקור השם \"מלינואה\" מהעיר מכלן בבלגיה (מאלין בצרפתית) שעל שמה הוא נקרא."
+  },
+  {
+    "slug": "new-guinea-singing-dog",
+    "name_en": "New Guinea singing dog",
+    "name_he": "הכלבים השרים מגינאה החדשה",
+    "images": [
+      "images/new-guinea-singing-dog/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 33,
+    "fact": ""
   },
   {
     "slug": "aidi",
@@ -897,6 +1084,19 @@
     "images": [
       "images/aidi/1.jpg"
     ],
-    "image_count": 1
+    "image_count": 1,
+    "sitelinks": 32,
+    "fact": "אידי (באנגלית: Aidi) הוא גזע כלבים שמקורו במרוקו ושייעודו המקורי היה הגנה על צאן. לאידי יכולות ציד וריח טובות, ובמרוקו צד בדרך כלל יחד עם סלוגי, אשר רדף אחר הטרף בעוד האידי איתר אותו בעזרת חוש הריח."
+  },
+  {
+    "slug": "white-swiss-shepherd",
+    "name_en": "White Swiss Shepherd",
+    "name_he": "רועה שווייצרי לבן",
+    "images": [
+      "images/white-swiss-shepherd/1.jpg"
+    ],
+    "image_count": 1,
+    "sitelinks": 32,
+    "fact": "כלב רועים שווייצרי לבן או ברגר בלאנק סוויס (בגרמנית: Weisser Schweizer Schäferhund, באיטלקית: Pastore Svizzero Bianco) הוא גזע שווייצרי של כלב רועים. הוא צאצא של רועים לבנים מצפון אמריקה שיובאו לשווייץ; הרועה הלבן עצמו הוא צאצא של רועים…"
   }
 ]

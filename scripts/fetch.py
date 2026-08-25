@@ -3,10 +3,12 @@
 
 Source of truth is Wikidata: every item that is an instance of "dog breed"
 (Q39367), ordered by sitelink count so the best-documented breeds come first.
-Images come from the curated P18 picture plus the breed's Commons category.
+Each breed gets IMAGES_PER_BREED photos: the curated P18 picture, falling back
+to the breed's Commons category when Wikidata has no P18.
 
-Run it as many times as you like -- breeds that already have a full set of
-images on disk are skipped without touching the network.
+Run it as many times as you like -- breeds that already have their photos on
+disk are skipped without touching the network, and lowering IMAGES_PER_BREED
+prunes the surplus on the next run.
 """
 
 import http.client
@@ -21,7 +23,7 @@ import urllib.parse
 import urllib.request
 
 MAX_BREEDS = 100
-IMAGES_PER_BREED = 5
+IMAGES_PER_BREED = 1
 REQUEST_DELAY = 1.0
 TIMEOUT = 60
 # Wikimedia answers 429 when it thinks we are hammering it. A single 429 used
@@ -215,6 +217,18 @@ def existing_images(directory):
     return sorted(names, key=order)
 
 
+def trim_extras(directory, keep):
+    """Drop photos past the cap, so lowering IMAGES_PER_BREED actually takes."""
+    dropped = 0
+    for name in existing_images(directory)[keep:]:
+        try:
+            os.remove(os.path.join(directory, name))
+            dropped += 1
+        except OSError:
+            pass
+    return dropped
+
+
 def download(url, destination):
     payload = request(url, binary=True)
     if not payload:
@@ -247,10 +261,12 @@ def main():
         slug = slugify(name)
         directory = os.path.join(IMAGES_DIR, slug)
 
+        dropped = trim_extras(directory, IMAGES_PER_BREED)
         present = existing_images(directory)
         if len(present) >= IMAGES_PER_BREED:
             paths = ["images/%s/%s" % (slug, f) for f in present[:IMAGES_PER_BREED]]
-            print("[%d/%d] %s -- %d images (cached)" % (index, total, name, len(paths)))
+            note = " (cached)" if not dropped else " (cached, %d pruned)" % dropped
+            print("[%d/%d] %s -- %d images%s" % (index, total, name, len(paths), note))
             dataset.append({
                 "slug": slug,
                 "name_en": name,

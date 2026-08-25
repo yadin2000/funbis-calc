@@ -1,0 +1,726 @@
+[
+  {
+    "slug": "german-shepherd",
+    "name_en": "German Shepherd",
+    "name_he": "רועה גרמני",
+    "images": [
+      "images/german-shepherd/1.jpg",
+      "images/german-shepherd/2.jpg",
+      "images/german-shepherd/3.jpg",
+      "images/german-shepherd/4.jpg",
+      "images/german-shepherd/5.jpg"
+    ],
+    "image_count": 5
+  },
+  {
+    "slug": "dingo",
+    "name_en": "dingo",
+    "name_he": "דינגו",
+    "images": [
+      "images/dingo/1.jpg",
+      "images/dingo/2.jpg",
+      "images/dingo/3.jpg",
+      "images/dingo/4.jpg",
+      "images/dingo/5.jpg"
+    ],
+    "image_count": 5
+  },
+  {
+    "slug": "labrador-retriever",
+    "name_en": "Labrador Retriever",
+    "name_he": "לברדור רטריבר",
+    "images": [
+      "images/labrador-retriever/1.jpg",
+      "images/labrador-retriever/2.jpg",
+      "images/labrador-retriever/3.jpg",
+      "images/labrador-retriever/4.jpg",
+      "images/labrador-retriever/5.jpg"
+    ],
+    "image_count": 5
+  },
+  {
+    "slug": "beagle",
+    "name_en": "beagle",
+    "name_he": "ביגל",
+    "images": [
+      "images/beagle/1.jpg",
+      "images/beagle/2.jpg",
+      "images/beagle/3.jpg",
+      "images/beagle/4.jpg",
+      "images/beagle/5.jpg"
+    ],
+    "image_count": 5
+  },
+  {
+    "slug": "chihuahua",
+    "name_en": "Chihuahua",
+    "name_he": "צ'יוואווה",
+    "images": [
+      "images/chihuahua/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "golden-retriever",
+    "name_en": "Golden Retriever",
+    "name_he": "גולדן רטריבר",
+    "images": [
+      "images/golden-retriever/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "dachshund",
+    "name_en": "dachshund",
+    "name_he": "תחש",
+    "images": [
+      "images/dachshund/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "akita",
+    "name_en": "Akita",
+    "name_he": "אקיטה",
+    "images": [
+      "images/akita/1.jpg",
+      "images/akita/2.jpg"
+    ],
+    "image_count": 2
+  },
+  {
+    "slug": "dalmatian",
+    "name_en": "Dalmatian",
+    "name_he": "דלמטי",
+    "images": [
+      "images/dalmatian/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "boxer",
+    "name_en": "Boxer",
+    "name_he": "בוקסר",
+    "images": [
+      "images/boxer/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "siberian-husky",
+    "name_en": "Siberian Husky",
+    "name_he": "האסקי סיבירי",
+    "images": [
+      "images/siberian-husky/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "great-dane",
+    "name_en": "Great Dane",
+    "name_he": "דני ענק",
+    "images": [
+      "images/great-dane/1.jpg",
+      "images/great-dane/2.jpg",
+      "images/great-dane/3.jpg"
+    ],
+    "image_count": 3
+  },
+  {
+    "slug": "dobermann",
+    "name_en": "Dobermann",
+    "name_he": "דוברמן פינצ'ר",
+    "images": [
+      "images/dobermann/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "border-collie",
+    "name_en": "border collie",
+    "name_he": "בורדר קולי",
+    "images": [
+      "images/border-collie/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "chow-chow",
+    "name_en": "Chow Chow",
+    "name_he": "צ'או צ'או",
+    "images": [
+      "images/chow-chow/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "afghan-hound",
+    "name_en": "Afghan Hound",
+    "name_he": "כלב אפגני",
+    "images": [
+      "images/afghan-hound/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "greyhound",
+    "name_en": "greyhound",
+    "name_he": "גרייהאונד",
+    "images": [
+      "images/greyhound/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "basenji",
+    "name_en": "Basenji",
+    "name_he": "בסנג'י",
+    "images": [
+      "images/basenji/1.jpg",
+      "images/basenji/2.jpg",
+      "images/basenji/3.jpg"
+    ],
+    "image_count": 3
+  },
+  {
+    "slug": "newfoundland-dog",
+    "name_en": "Newfoundland dog",
+    "name_he": "ניופאונדלנד",
+    "images": [
+      "images/newfoundland-dog/1.jpg",
+      "images/newfoundland-dog/2.jpg",
+      "images/newfoundland-dog/3.jpg",
+      "images/newfoundland-dog/4.jpg",
+      "images/newfoundland-dog/5.jpg"
+    ],
+    "image_count": 5
+  },
+  {
+    "slug": "shih-tzu",
+    "name_en": "Shih Tzu",
+    "name_he": "שי טסו",
+    "images": [
+      "images/shih-tzu/1.jpg",
+      "images/shih-tzu/2.jpg",
+      "images/shih-tzu/3.jpg",
+      "images/shih-tzu/4.jpg",
+      "images/shih-tzu/5.jpg"
+    ],
+    "image_count": 5
+  },
+  {
+    "slug": "bull-terrier",
+    "name_en": "Bull Terrier",
+    "name_he": "בול טרייר",
+    "images": [
+      "images/bull-terrier/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "samoyed",
+    "name_en": "Samoyed",
+    "name_he": "סמוייד",
+    "images": [
+      "images/samoyed/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "alaskan-malamute",
+    "name_en": "Alaskan Malamute",
+    "name_he": "אלסקן מלמוט",
+    "images": [
+      "images/alaskan-malamute/1.jpg",
+      "images/alaskan-malamute/2.jpg",
+      "images/alaskan-malamute/3.jpg",
+      "images/alaskan-malamute/4.jpg"
+    ],
+    "image_count": 4
+  },
+  {
+    "slug": "pekingese",
+    "name_en": "Pekingese",
+    "name_he": "פקינז",
+    "images": [
+      "images/pekingese/1.jpg",
+      "images/pekingese/2.jpg"
+    ],
+    "image_count": 2
+  },
+  {
+    "slug": "french-bulldog",
+    "name_en": "French Bulldog",
+    "name_he": "בולדוג צרפתי",
+    "images": [
+      "images/french-bulldog/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "airedale-terrier",
+    "name_en": "Airedale Terrier",
+    "name_he": "איירדייל טרייר",
+    "images": [
+      "images/airedale-terrier/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "australian-shepherd",
+    "name_en": "Australian Shepherd",
+    "name_he": "רועה אוסטרלי",
+    "images": [
+      "images/australian-shepherd/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "jack-russell-terrier",
+    "name_en": "Jack Russell Terrier",
+    "name_he": "ג'ק ראסל טרייר",
+    "images": [
+      "images/jack-russell-terrier/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "west-highland-white-terrier",
+    "name_en": "West Highland White Terrier",
+    "name_he": "וסט היילנד וייט טרייר",
+    "images": [
+      "images/west-highland-white-terrier/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "caucasian-shepherd-dog",
+    "name_en": "Caucasian Shepherd Dog",
+    "name_he": "רועה קווקזי",
+    "images": [
+      "images/caucasian-shepherd-dog/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "irish-wolfhound",
+    "name_en": "Irish wolfhound",
+    "name_he": "וולפהאונד אירי",
+    "images": [
+      "images/irish-wolfhound/1.jpg",
+      "images/irish-wolfhound/2.jpg",
+      "images/irish-wolfhound/3.jpg"
+    ],
+    "image_count": 3
+  },
+  {
+    "slug": "bloodhound",
+    "name_en": "bloodhound",
+    "name_he": "כלב דם",
+    "images": [
+      "images/bloodhound/1.jpg",
+      "images/bloodhound/2.jpg"
+    ],
+    "image_count": 2
+  },
+  {
+    "slug": "borzoi",
+    "name_en": "Borzoi",
+    "name_he": "בורזוי",
+    "images": [
+      "images/borzoi/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "bullmastiff",
+    "name_en": "Bullmastiff",
+    "name_he": "בול מסטיף",
+    "images": [
+      "images/bullmastiff/1.jpg",
+      "images/bullmastiff/2.jpg",
+      "images/bullmastiff/3.jpg"
+    ],
+    "image_count": 3
+  },
+  {
+    "slug": "english-setter",
+    "name_en": "English Setter",
+    "name_he": "סטר אנגלי",
+    "images": [
+      "images/english-setter/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "cane-corso",
+    "name_en": "Cane Corso",
+    "name_he": "קאנה קורסו",
+    "images": [
+      "images/cane-corso/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "australian-cattle-dog",
+    "name_en": "Australian Cattle Dog",
+    "name_he": "כלב בקר אוסטרלי",
+    "images": [
+      "images/australian-cattle-dog/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "bernese-mountain-dog",
+    "name_en": "Bernese Mountain Dog",
+    "name_he": "ברנר זננהונד",
+    "images": [
+      "images/bernese-mountain-dog/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "basset-hound",
+    "name_en": "basset hound",
+    "name_he": "באסט האונד",
+    "images": [
+      "images/basset-hound/1.jpg",
+      "images/basset-hound/2.jpg",
+      "images/basset-hound/3.jpg",
+      "images/basset-hound/4.jpg"
+    ],
+    "image_count": 4
+  },
+  {
+    "slug": "cairn-terrier",
+    "name_en": "Cairn Terrier",
+    "name_he": "קאירן טרייר",
+    "images": [
+      "images/cairn-terrier/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "irish-setter",
+    "name_en": "Irish Setter",
+    "name_he": "סטר אירי",
+    "images": [
+      "images/irish-setter/1.jpg",
+      "images/irish-setter/2.jpg"
+    ],
+    "image_count": 2
+  },
+  {
+    "slug": "shetland-sheepdog",
+    "name_en": "Shetland Sheepdog",
+    "name_he": "כלב רועים שלטי",
+    "images": [
+      "images/shetland-sheepdog/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "bichon-frise",
+    "name_en": "Bichon Frisé",
+    "name_he": "בישון פריזה",
+    "images": [
+      "images/bichon-frise/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "american-staffordshire-terrier",
+    "name_en": "American Staffordshire Terrier",
+    "name_he": "אמסטף",
+    "images": [
+      "images/american-staffordshire-terrier/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "cavalier-king-charles-spaniel",
+    "name_en": "Cavalier King Charles Spaniel",
+    "name_he": "קבליר קינג צ'ארלס ספנייל",
+    "images": [
+      "images/cavalier-king-charles-spaniel/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "komondor",
+    "name_en": "Komondor",
+    "name_he": "קומונדור",
+    "images": [
+      "images/komondor/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "belgian-shepherd",
+    "name_en": "Belgian Shepherd",
+    "name_he": "רועה בלגי",
+    "images": [
+      "images/belgian-shepherd/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "old-english-sheepdog",
+    "name_en": "Old English sheepdog",
+    "name_he": "כלב צאן אנגלי עתיק",
+    "images": [
+      "images/old-english-sheepdog/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "azawakh",
+    "name_en": "Azawakh",
+    "name_he": "אזוואק",
+    "images": [
+      "images/azawakh/1.jpg",
+      "images/azawakh/2.jpg",
+      "images/azawakh/3.jpg",
+      "images/azawakh/4.jpg"
+    ],
+    "image_count": 4
+  },
+  {
+    "slug": "lhasa-apso",
+    "name_en": "Lhasa Apso",
+    "name_he": "להאסה אפסו",
+    "images": [
+      "images/lhasa-apso/1.jpg",
+      "images/lhasa-apso/2.jpg",
+      "images/lhasa-apso/3.jpg",
+      "images/lhasa-apso/4.jpg",
+      "images/lhasa-apso/5.jpg"
+    ],
+    "image_count": 5
+  },
+  {
+    "slug": "english-mastiff",
+    "name_en": "English Mastiff",
+    "name_he": "מסטיף אנגלי",
+    "images": [
+      "images/english-mastiff/1.jpg",
+      "images/english-mastiff/2.jpg"
+    ],
+    "image_count": 2
+  },
+  {
+    "slug": "miniature-pinscher",
+    "name_en": "Miniature Pinscher",
+    "name_he": "פינצ'ר ננסי",
+    "images": [
+      "images/miniature-pinscher/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "pyrenean-mountain-dog",
+    "name_en": "Pyrenean Mountain Dog",
+    "name_he": "כלב הרים פירנאי",
+    "images": [
+      "images/pyrenean-mountain-dog/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "fox-terrier",
+    "name_en": "Fox Terrier",
+    "name_he": "פוקס טרייר",
+    "images": [
+      "images/fox-terrier/1.jpg",
+      "images/fox-terrier/2.jpg",
+      "images/fox-terrier/3.jpg",
+      "images/fox-terrier/4.jpg",
+      "images/fox-terrier/5.jpg"
+    ],
+    "image_count": 5
+  },
+  {
+    "slug": "border-terrier",
+    "name_en": "Border Terrier",
+    "name_he": "בורדר טרייר",
+    "images": [
+      "images/border-terrier/1.jpg",
+      "images/border-terrier/2.jpg",
+      "images/border-terrier/3.jpg",
+      "images/border-terrier/4.jpg",
+      "images/border-terrier/5.jpg"
+    ],
+    "image_count": 5
+  },
+  {
+    "slug": "german-shorthaired-pointer",
+    "name_en": "German Shorthaired Pointer",
+    "name_he": "פוינטר גרמני קצר שיער",
+    "images": [
+      "images/german-shorthaired-pointer/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "welsh-corgi",
+    "name_en": "Welsh Corgi",
+    "name_he": "ולש קורגי",
+    "images": [
+      "images/welsh-corgi/1.jpg",
+      "images/welsh-corgi/2.jpg",
+      "images/welsh-corgi/3.jpg"
+    ],
+    "image_count": 3
+  },
+  {
+    "slug": "gordon-setter",
+    "name_en": "Gordon Setter",
+    "name_he": "גורדון סטר",
+    "images": [
+      "images/gordon-setter/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "canaan-dog",
+    "name_en": "Canaan Dog",
+    "name_he": "כלב כנעני",
+    "images": [
+      "images/canaan-dog/1.jpg",
+      "images/canaan-dog/2.jpg",
+      "images/canaan-dog/3.jpg"
+    ],
+    "image_count": 3
+  },
+  {
+    "slug": "xoloitzcuintle",
+    "name_en": "Xoloitzcuintle",
+    "name_he": "שולואיצקווינטלי",
+    "images": [
+      "images/xoloitzcuintle/1.jpg",
+      "images/xoloitzcuintle/2.jpg"
+    ],
+    "image_count": 2
+  },
+  {
+    "slug": "staffordshire-bull-terrier",
+    "name_en": "Staffordshire Bull Terrier",
+    "name_he": "סטאפורדשייר בול טרייר",
+    "images": [
+      "images/staffordshire-bull-terrier/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "american-bulldog",
+    "name_en": "American Bulldog",
+    "name_he": "בולדוג אמריקאי",
+    "images": [
+      "images/american-bulldog/1.jpg",
+      "images/american-bulldog/2.jpg"
+    ],
+    "image_count": 2
+  },
+  {
+    "slug": "beauceron",
+    "name_en": "Beauceron",
+    "name_he": "בוסרון",
+    "images": [
+      "images/beauceron/1.jpg",
+      "images/beauceron/2.jpg"
+    ],
+    "image_count": 2
+  },
+  {
+    "slug": "weimaraner",
+    "name_en": "Weimaraner",
+    "name_he": "ויימרנר",
+    "images": [
+      "images/weimaraner/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "bolognese",
+    "name_en": "Bolognese",
+    "name_he": "בולונז",
+    "images": [
+      "images/bolognese/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "papillon",
+    "name_en": "Papillon",
+    "name_he": "פפיון",
+    "images": [
+      "images/papillon/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "italian-greyhound",
+    "name_en": "Italian Greyhound",
+    "name_he": "גרייהאונד איטלקי",
+    "images": [
+      "images/italian-greyhound/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "australian-kelpie",
+    "name_en": "Australian Kelpie",
+    "name_he": "קלפי אוסטרלי",
+    "images": [
+      "images/australian-kelpie/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "dogue-de-bordeaux",
+    "name_en": "Dogue de Bordeaux",
+    "name_he": "דוג דה בורדו",
+    "images": [
+      "images/dogue-de-bordeaux/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "belgian-malinois",
+    "name_en": "Belgian Malinois",
+    "name_he": "רועה בלגי (מלינואה)",
+    "images": [
+      "images/belgian-malinois/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "tibetan-terrier",
+    "name_en": "Tibetan Terrier",
+    "name_he": "טרייר טיבטי",
+    "images": [
+      "images/tibetan-terrier/1.jpg"
+    ],
+    "image_count": 1
+  },
+  {
+    "slug": "new-guinea-singing-dog",
+    "name_en": "New Guinea singing dog",
+    "name_he": "הכלבים השרים מגינאה החדשה",
+    "images": [
+      "images/new-guinea-singing-dog/1.jpg",
+      "images/new-guinea-singing-dog/2.jpg",
+      "images/new-guinea-singing-dog/3.jpg"
+    ],
+    "image_count": 3
+  },
+  {
+    "slug": "white-swiss-shepherd",
+    "name_en": "White Swiss Shepherd",
+    "name_he": "רועה שווייצרי לבן",
+    "images": [
+      "images/white-swiss-shepherd/1.jpg"
+    ],
+    "image_count": 1
+  }
+]

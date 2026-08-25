@@ -66,6 +66,12 @@ jobs:
             git push
           fi
 
+      # Turns the Pages source into "GitHub Actions" via the API, so the repo
+      # owner does not have to flip it by hand in Settings.
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
       - name: Assemble the site
         run: |
           mkdir -p _site
